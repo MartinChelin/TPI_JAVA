@@ -13,7 +13,7 @@ public class DbHandler {
 	private Connection conn=null;
 	
 				//PRUEBA DE CONEXION
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
         DbHandler dbHandler = DbHandler.getInstancia();
         Connection conn = dbHandler.getConn();
 
@@ -23,7 +23,7 @@ public class DbHandler {
         } else {
             System.err.println("Error de conexión. Verifica las credenciales.");
         }
-    }*/
+    }
 	
 	public DbHandler() {
 		try {
