@@ -145,10 +145,10 @@ public class ClienteData {
 			stmt.setString(3, cli.getApellido());
 			stmt.setString(4, cli.getMail());
 			stmt.setObject(5, cli.getFechaNac());
-			stmt.setString(5, cli.getUsuario());
-			stmt.setString(6, cli.getContraseña());
-			stmt.setInt(7, cli.getNroTarjeta());
-			stmt.setString(7, cli.getRol());
+			stmt.setString(6, cli.getUsuario());
+			stmt.setString(7, cli.getContraseña());
+			stmt.setInt(8, cli.getNroTarjeta());
+			stmt.setString(9, cli.getRol());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
