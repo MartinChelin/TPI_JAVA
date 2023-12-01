@@ -50,7 +50,7 @@ CREATE TABLE `cliente` (
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `mail` varchar(45) NOT NULL,
-  `fechaNac` date DEFAULT NULL,
+  `fechaNac` date NOT NULL,
   `usuario` varchar(45) NOT NULL,
   `contraseña` varchar(45) NOT NULL,
   `nro_tarjeta` int NOT NULL,
