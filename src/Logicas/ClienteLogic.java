@@ -71,5 +71,23 @@ public class ClienteLogic {
 		
 	}
 
+	public boolean VerifyUser(String uname, String pass) {
+		ClienteData cliData = new ClienteData();
+		Cliente cli = cliData.searchByUsername(uname);
+		
+		if (cli.getDniCliente() != "") {
+			if (cli.getContraseña().equals(pass)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+		
+	}
+
 	
 }
