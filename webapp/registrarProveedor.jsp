@@ -15,12 +15,12 @@
     <div class = "row">
     	<div class = "col-2"></div>
     	<div class="col-4">
-    <form action="registrarProveedor" method="post">
+    <form action="registrar" method="post">
         <br>
         <br>
 
         <label class="form-label">DNI:</label>
-        <input class="form-control" type="text" id="dni" name="dniCliente" required><br>
+        <input class="form-control" type="text" id="dniCliente" name="dniCliente" required><br>
 
         <label class="form-label">Nombre:</label>
         <input class="form-control" type="text" id="nombre" name="nombre" required><br>
