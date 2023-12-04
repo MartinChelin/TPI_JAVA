@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.Categoria;
-import entidades.Producto;
-import logic.LogCategoria;
-import logic.LogProducto;
+import Entidades.Categoria;
+import Entidades.Producto;
+import Logicas.*;
 
 /**
  * Servlet implementation class ProductoLista

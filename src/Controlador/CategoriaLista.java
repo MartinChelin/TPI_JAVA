@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.Categoria;
-import logic.LogCategoria;
+import Entidades.Categoria;
+import Logicas.*;
 
 /**
  * Servlet implementation class CategoriaLista

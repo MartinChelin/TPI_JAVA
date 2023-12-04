@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.LinkedList" %>
-    <%@ page import="entidades.Producto" %>
+    <%@ page import="Entidades.Producto" %>
 <!DOCTYPE html>
 <html>
 <head>

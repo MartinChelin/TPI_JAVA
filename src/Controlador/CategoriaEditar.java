@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import entidades.Categoria;
-import logic.LogCategoria;
+import Entidades.Categoria;
+import Logicas.LogCategoria;
 
 /**
  * Servlet implementation class CategoriaEditar

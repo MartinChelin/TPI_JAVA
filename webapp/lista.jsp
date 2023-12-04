@@ -1,5 +1,5 @@
 <%@ page import="java.util.LinkedList" %>
-<%@ page import="entidades.Categoria" %>
+<%@ page import="Entidades.Categoria" %>
 <%@ page import="java.util.LinkedList" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
