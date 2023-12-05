@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Botones con NavBar en Header</title>
+    <style>
+        /* Estilos para el cuerpo */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Estilos para el header */
+        header {
+            overflow: hidden;
+            background: #252932;
+            margin-bottom: 20px;
+        }
+
+        .cabeza {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header nav {
+            float: right;
+            line-height: 80px; /* Ajuste de altura para alinear verticalmente */
+        }
+
+        header nav a {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 500ms ease;
+        }
+
+        header nav a:hover {
+            background: #3498db;
+            border-radius: 50px;
+        }
+
+        /* Estilos para la lista de botones */
+        .button-list {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente */
+            flex-wrap: wrap; /* Envolver botones si no caben en una línea */
+        }
+
+        .button-list li {
+            margin: 10px; /* Espacio entre los botones */
+        }
+
+        /* Estilos para los botones */
+        .button-list button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-list button:hover {
+            background-color: #2980b9;
+        }
+        /* Estilo del logo */
+        img {
+        float: left;
+        max-width: 10%;
+        max-height: 10%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img class = img src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
+        <div class="cabeza">
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Título</a>
+                <a href="#">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        <ul class="button-list">
+            <li><button>Clientes</button></li>
+            <li><button>Productos</button></li>
+            <li><button>Categorías</button></li>
+            <li><button>Proveedores</button></li>
+            <li><button>Historial de valores</button></li>
+            <li><button>Repartidores</button></li>
+            <li><button>Zonas</button></li>
+            <li><button>Reclamos</button></li>
+        </ul>
+    </div>
+</body>
+</html>
