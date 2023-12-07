@@ -17,17 +17,17 @@ public class DataProducto {
 		
 		try {
 			stmt = DbHandler.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select codProd, nombre, descripcion, stock, precioBase, codCat from producto");
+			rs = stmt.executeQuery("select codProducto, nombre, descripcion, stock, precioBase, codCategoria from producto");
 			if (rs!=null) {
 				while (rs.next()) {
 					Producto p = new Producto();
-					p.setCodProd(rs.getInt("codProd"));
+					p.setCodProd(rs.getInt("codProducto"));
 					p.setNombre(rs.getString("nombre"));
 					p.setDescripcion(rs.getString("descripcion"));
 					p.setStock(rs.getInt("stock"));
 					p.setPrecioBase(rs.getDouble("precioBase"));
 					LogCategoria control = new LogCategoria();
-					p.setCat(control.getOne(rs.getInt("codCat")));
+					p.setCat(control.getOne(rs.getInt("codCategoria")));
 					prods.add(p);
 					}
 				}

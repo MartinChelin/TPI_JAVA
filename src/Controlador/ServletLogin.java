@@ -1,5 +1,7 @@
 package Controlador;
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Data.ClienteData;
 import Logicas.ClienteLogic;
+import Logicas.LogProducto;
+import Entidades.Producto;
 
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
@@ -19,6 +22,8 @@ public class ServletLogin extends HttpServlet {
 		String pass = request.getParameter("pass");
 		
 		ClienteLogic cliLogic = new ClienteLogic();
+		LogProducto proLogic = new LogProducto();
+		LinkedList<Producto> productos = proLogic.getAll();
 		boolean verificacion = cliLogic.VerifyUser(uname, pass);
 		
 		//if (uname.equals("admin") && pass.equals("admin"))
@@ -26,7 +31,8 @@ public class ServletLogin extends HttpServlet {
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("username", uname);
-			response.sendRedirect("main.jsp");
+			request.setAttribute("listaProductos", productos);
+			request.getRequestDispatcher("main.jsp").forward(request, response);
 		}
 		else {
 			response.sendRedirect("login.jsp");

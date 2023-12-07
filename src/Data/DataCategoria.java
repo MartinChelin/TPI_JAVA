@@ -101,11 +101,11 @@ public class DataCategoria {
 		ResultSet rs = null;
 		Categoria c = new Categoria();
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from categoria where codCat = ?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from categoria where codCategoria = ?");
 			pstmt.setInt(1,id);
 			rs = pstmt.executeQuery();
 			if (rs!=null && rs.next()) {
-					c.setCodCat(rs.getInt("codCat"));
+					c.setCodCat(rs.getInt("codCategoria"));
 					c.setDescripcion(rs.getString("descripcion"));
 					}
 			} catch (SQLException e) {
