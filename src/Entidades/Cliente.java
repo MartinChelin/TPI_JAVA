@@ -11,7 +11,7 @@ public class Cliente {
 	private String usuario;
 	private String contraseña;
 	private int nroTarjeta;
-	private String rol;
+	private int esAdmin;
 	private LocalDate fechaNac;
 	String dateFormat = "dd/MM/yyyy";
 	
@@ -21,13 +21,19 @@ public class Cliente {
 		
 		return "Cliente [dniCliente=" + dniCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", mail=" + mail
 				+ ", fechaNac=" + fechaNac.format(dFormat) + ", usuario=" + usuario + ", contraseña=" + contraseña + ", nroTarjeta="
-				+ nroTarjeta + ", rol=" + rol + "]";
+				+ nroTarjeta + ", esAdmin=" + esAdmin + "]";
 	}
 	public String getDniCliente() {
 		return dniCliente;
 	}
 	public void setDniCliente(String dniCliente) {
 		this.dniCliente = dniCliente;
+	}
+	public int getEsAdmin() {
+		return esAdmin;
+	}
+	public void setEsAdmin(int esAdmin) {
+		this.esAdmin = esAdmin;
 	}
 	public String getNombre() {
 		return nombre;
@@ -71,12 +77,6 @@ public class Cliente {
 	public void setNroTarjeta(int nroTarjeta) {
 		this.nroTarjeta = nroTarjeta;
 	}
-	public String getRol() {
-		return rol;
-	}
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
 	public boolean estaVacia() {
         if(this.getDniCliente().isEmpty()) {
         	return true;
@@ -88,7 +88,7 @@ public class Cliente {
 		super();
 	}
 	public Cliente(String dniCliente, String nombre, String apellido, String mail, LocalDate fechaNac, String usuario,
-			String contraseña, int nroTarjeta, String rol) {
+			String contraseña, int nroTarjeta, int esAdmin) {
 		super();
 		this.dniCliente = dniCliente;
 		this.nombre = nombre;
@@ -98,6 +98,6 @@ public class Cliente {
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 		this.nroTarjeta = nroTarjeta;
-		this.rol = rol;
+		this.esAdmin = esAdmin;
 	}
 }

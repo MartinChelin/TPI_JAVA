@@ -15,7 +15,7 @@ public class ClienteData {
 		DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
 		LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
 		
-		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, "");
+		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
 	
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from cliente where usuario=?");
@@ -32,7 +32,7 @@ public class ClienteData {
             	cli.setUsuario(rs.getString(("usuario")));
             	cli.setContraseña(rs.getString(("contraseña")));
             	cli.setNroTarjeta(rs.getInt(("nro_tarjeta")));
-            	cli.setRol(rs.getString(("rol")));
+            	cli.setEsAdmin(rs.getInt(("esAdmin")));
             }
         
 		} catch (SQLException e) {
@@ -57,7 +57,7 @@ public class ClienteData {
 		DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
 		LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
 		
-		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, "");
+		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
 	
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from cliente where usuario=?");
@@ -73,7 +73,7 @@ public class ClienteData {
             	cli.setUsuario(rs.getString(("usuario")));
             	cli.setContraseña(rs.getString(("contraseña")));
             	cli.setNroTarjeta(rs.getInt(("nro_tarjeta")));
-            	cli.setRol(rs.getString(("rol")));
+            	cli.setEsAdmin(rs.getInt(("esAdmin")));
             }
         
 		} catch (SQLException e) {
@@ -98,7 +98,7 @@ public class ClienteData {
 		DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
 		LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
 		
-		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, "");
+		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
 	
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from cliente where usuario=?");
@@ -114,7 +114,7 @@ public class ClienteData {
             	cli.setUsuario(rs.getString(("usuario")));
             	cli.setContraseña(rs.getString(("contraseña")));
             	cli.setNroTarjeta(rs.getInt(("nro_tarjeta")));
-            	cli.setRol(rs.getString(("rol")));
+            	cli.setEsAdmin(rs.getInt(("esAdmin")));
             }
         
 		} catch (SQLException e) {
@@ -137,7 +137,7 @@ public class ClienteData {
 		try {
 			stmt=DbHandler.getInstancia().getConn().
 					prepareStatement(
-							"insert into cliente(dniCliente, nombre, apellido, mail, fechaNac, usuario, contraseña, nro_tarjeta,rol) values(?,?,?,?,?,?,?,?,?)",
+							"insert into cliente(dniCliente, nombre, apellido, mail, fechaNac, usuario, contraseña, nro_tarjeta,esAdmin) values(?,?,?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setString(1, cli.getDniCliente());
@@ -148,7 +148,7 @@ public class ClienteData {
 			stmt.setString(6, cli.getUsuario());
 			stmt.setString(7, cli.getContraseña());
 			stmt.setInt(8, cli.getNroTarjeta());
-			stmt.setString(9, cli.getRol());
+			stmt.setInt(9, 0);
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();

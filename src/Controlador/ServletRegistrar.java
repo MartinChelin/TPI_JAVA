@@ -29,7 +29,7 @@ public class ServletRegistrar extends HttpServlet {
         String apellido = request.getParameter("apellido");
         String fechaNac = request.getParameter("fechaNac");
 
-        newCliente.addNewCliente(dniCliente, nombre, apellido, mail, fechaNac, usuario, password, 0 ,"");
+        newCliente.addNewCliente(dniCliente, nombre, apellido, mail, fechaNac, usuario, password, 0 ,0);
         response.getWriter().append("Carga Completa").append(request.getContextPath());
 
     }
