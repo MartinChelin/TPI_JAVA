@@ -167,7 +167,11 @@
                 <td><%= cliente.getApellido() %></td>
                 <td><%= cliente.getEsAdmin() %></td>
                 <td><button>SetAdmin</button></td>
-                <td><button>Borrar</button></td>
+                <td>
+    				<form action="ServletBorrarCliente" method="post">
+        				<button name="dniCliente" value="<%= cliente.getDniCliente()%>">Borrar</button>
+    				</form>
+				</td>
             </tr>
             <% } %>
         </tbody>

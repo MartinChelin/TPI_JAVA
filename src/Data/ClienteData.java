@@ -214,6 +214,25 @@ public class ClienteData {
 		return clientes;
 	}
 
+	
+	public static void deleteCliente(String dniCli) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from cliente where dniCliente=?");
+			pstmt.setString(1,dniCli);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }
 	
 	//PROXS METODOS
