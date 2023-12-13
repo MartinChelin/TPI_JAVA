@@ -169,7 +169,11 @@
                 <td><%= proveedor.getDireccion() %></td>
                 <td><%= proveedor.getMail() %></td>
                 <td><button>Modificar</button></td>
-                <td><button>Borrar</button></td>
+                <td>
+    				<form action="ServletBorrarProveedor" method="post">
+        				<button name="dniProveedor" value="<%= proveedor.getDni()%>">Borrar</button>
+    				</form>
+				</td>
             </tr>
             <% } %>
         </tbody>
