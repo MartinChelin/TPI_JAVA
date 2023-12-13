@@ -76,4 +76,22 @@ public class ProveedorData {
 								}
 		return proveedores;
 	}
+	
+	public static void deleteProveedor(String dniProv) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from proveedor where dniProveedor=?");
+			pstmt.setString(1,dniProv);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
 }
