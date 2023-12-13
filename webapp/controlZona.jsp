@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="Entidades.Cliente"%>
+ <%@ page import="Entidades.Zona" %>
+ <%@ page import="java.util.LinkedList" %>   
+ 
 <!DOCTYPE html>
-<html lang="es">
+<html>
+
+
 <head>
-    <meta charset="UTF-8">
-    <title>Pagina Inicial de Admin</title>
+	<meta charset="ISO-8859-1">
+	<title>Control Zonas</title>
     <%
     	if(session.getAttribute("username")==null){
     		response.sendRedirect("login.jsp");
     	}
-    	%>    
+    %>    
 	<%
 		String username = (String)session.getAttribute("username");
 	%>
@@ -119,8 +123,10 @@
     }
     </style>
 </head>
+
+
 <body>
-    <header>
+ <header>
     <img class="img" src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
     <div class="cabeza">
         <nav>
@@ -134,18 +140,35 @@
             </form>
         </div>
     </div>
-	</header>
-    <div>
-        <ul class="button-list">
-            <li><form action="ServletSetClientesEnReq" method="get"><button>Clientes</button></form></li>
-            <li><button>Productos</button></li>
-            <li><button>Categorías</button></li>
-            <li><form action="ServletSetProveedorEnReq" method="get"><button>Proveedores</button></form></li>
-            <li><button>Historial de valores</button></li>
-            <li><button>Repartidores</button></li>
-            <li><form action="ServletSetZonaEnReq" method="get"><button>Zonas</button></form></li>
-            <li><button>Reclamos</button></li>
-        </ul>
-    </div>
+</header>
+
+<h1>Listado de Zonas</h1>
+	<button class="add-provider-btn" onclick="window.location.href='registrarZona.jsp'">Añadir una zona</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                LinkedList<Zona> listaZonas = (LinkedList<Zona>) request.getAttribute("listaZonas");
+                for (Zona zona : listaZonas) {
+            %>
+            <tr>
+                <td><%= zona.getCodZona() %></td>
+                <td><%= zona.getDescripcion() %></td>
+                <td><button>Modificar</button></td>
+                <td><button>Borrar</button></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+
+
+
 </body>
 </html>

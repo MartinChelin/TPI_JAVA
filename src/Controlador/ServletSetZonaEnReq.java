@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.ClienteData;
-import Entidades.Cliente;
+import Data.DataZona;
+import Entidades.Zona;
 
 @WebServlet("/ServletSetZonaEnReq")
 public class ServletSetZonaEnReq extends HttpServlet {
@@ -24,10 +24,10 @@ public class ServletSetZonaEnReq extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		LinkedList<Cliente> listaClientes = ClienteData.getAll();
-		request.setAttribute("listaZonas", listaClientes);
+		LinkedList<Zona> listaZonas = DataZona.getAll();
+		request.setAttribute("listaZonas", listaZonas);
 		
-		request.getRequestDispatcher("/registrarZona.jsp").forward(request, response);
+		request.getRequestDispatcher("/controlZona.jsp").forward(request, response);
 	}
 
 	
