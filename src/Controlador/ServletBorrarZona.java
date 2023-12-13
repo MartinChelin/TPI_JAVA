@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.ProveedorData;
+import Data.DataZona;
 
 @WebServlet("/ServletBorrarZona")
 public class ServletBorrarZona extends HttpServlet {
@@ -25,7 +25,7 @@ public class ServletBorrarZona extends HttpServlet {
 		
 		String codZona = request.getParameter("codZona");
 		
-		ProveedorData.deleteProveedor(codZona);
+		DataZona.deleteZona(codZona);
 		
 		request.getRequestDispatcher("/mainAdmin.jsp").forward(request, response);
 		
