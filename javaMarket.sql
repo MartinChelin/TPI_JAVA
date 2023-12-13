@@ -50,11 +50,11 @@ CREATE TABLE `cliente` (
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `mail` varchar(45) NOT NULL,
-  `fechaNac` date NOT NULL,
+  `fechaNac` date DEFAULT NULL,
   `usuario` varchar(45) NOT NULL,
   `contraseña` varchar(45) NOT NULL,
   `nro_tarjeta` int NOT NULL,
-  `rol` varchar(45) NOT NULL DEFAULT '0',
+  `esAdmin` tinyint(1) NOT NULL,
   PRIMARY KEY (`dniCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
