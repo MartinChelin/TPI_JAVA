@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class ClienteData {
 	
-	public Cliente searchByUsername(String username){
+	public static Cliente searchByUsername(String username){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -52,7 +52,7 @@ public class ClienteData {
 		return cli;
 	}
 	
-	public Cliente searchByDni(String dniCliente){
+	public static Cliente searchByDni(String dniCliente){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -140,7 +140,7 @@ public class ClienteData {
 		try {
 			stmt=DbHandler.getInstancia().getConn().
 					prepareStatement(
-							"insert into cliente(dniCliente, nombre, apellido, mail, fechaNac, usuario, contraseña, nro_tarjeta,esAdmin) values(?,?,?,?,?,?,?,?,?)",
+							"insert into cliente(dniCliente, nombre, apellido, mail, fechaNac, usuario, contraseña, nro_tarjeta, esAdmin) values(?,?,?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setString(1, cli.getDniCliente());
@@ -213,7 +213,6 @@ public class ClienteData {
 								}
 		return clientes;
 	}
-
 	
 	public static void deleteCliente(String dniCli) {
 		PreparedStatement pstmt = null;
@@ -233,5 +232,56 @@ public class ClienteData {
 		}
 	}
 	
+<<<<<<< HEAD
 }	
+=======
+	public void updateCliente(Cliente cli) {
+		PreparedStatement pstmt=null;
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update producto set nombre=?, apellido=?, mail=?, fechaNac=?, usuario=?, contraseña=?, nro_tarjeta=?, esAdmin=? where dniCliente=?");
+			pstmt.setString(1,cli.getNombre());
+			pstmt.setString(2,cli.getApellido());
+			pstmt.setString(3,cli.getMail());
+			pstmt.setObject(4,cli.getFechaNac());
+			pstmt.setString(5, cli.getUsuario());
+			pstmt.setString(6,cli.getContraseña());
+			pstmt.setInt(7,cli.getNroTarjeta());
+			pstmt.setInt(8,cli.getEsAdmin());
+			pstmt.setString(9,cli.getDniCliente());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void updateRolCliente(String dniCliente, int rolCliente) {
+		PreparedStatement pstmt=null;
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update Cliente set esAdmin=? where dniCliente=?");
+			pstmt.setInt(1,rolCliente);
+			pstmt.setString(2,dniCliente);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+}
+	
+>>>>>>> tiago
 	//PROXS METODOS
