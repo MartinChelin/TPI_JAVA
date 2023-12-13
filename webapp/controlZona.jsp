@@ -162,6 +162,11 @@
                 <td><%= zona.getDescripcion() %></td>
                 <td><button>Modificar</button></td>
                 <td><button>Borrar</button></td>
+                <td>
+    				<form action="ServletBorrarZona" method="post">
+        				<button name="codZona" value="<%= zona.getCodZona()%>">Borrar</button>
+    				</form>
+				</td>
             </tr>
             <% } %>
         </tbody>
