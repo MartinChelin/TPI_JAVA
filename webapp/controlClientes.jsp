@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="Entidades.Cliente"%>
+ <%@ page import="Entidades.Cliente" %>
+ <%@ page import="java.util.LinkedList" %>   
+ 
 <!DOCTYPE html>
-<html lang="es">
+<html>
+
+
 <head>
-    <meta charset="UTF-8">
-    <title>Pagina Inicial de Admin</title>
+	<meta charset="ISO-8859-1">
+	<title>Control Clientes</title>
     <%
     	if(session.getAttribute("username")==null){
     		response.sendRedirect("login.jsp");
     	}
-    	%>    
+    %>    
 	<%
 		String username = (String)session.getAttribute("username");
 	%>
@@ -119,8 +123,10 @@
     }
     </style>
 </head>
+
+
 <body>
-    <header>
+ <header>
     <img class="img" src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
     <div class="cabeza">
         <nav>
@@ -134,18 +140,41 @@
             </form>
         </div>
     </div>
-	</header>
-    <div>
-        <ul class="button-list">
-            <li><form action="ServletSetClientesEnReq" method="get"><button>Clientes</button></form></li>
-            <li><button>Productos</button></li>
-            <li><button>Categorías</button></li>
-            <li><button>Proveedores</button></li>
-            <li><button>Historial de valores</button></li>
-            <li><button>Repartidores</button></li>
-            <li><button>Zonas</button></li>
-            <li><button>Reclamos</button></li>
-        </ul>
-    </div>
+</header>
+
+<h1>Listado de Clientes</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Correo Electrónico</th>
+                <th>EsAdmin</th>
+                <th>ConfigAdmin</th>
+                <th>Borrar Cliente</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                LinkedList<Cliente> listaClientes = (LinkedList<Cliente>) request.getAttribute("listaClientes");
+                for (Cliente cliente : listaClientes) {
+            %>
+            <tr>
+                <td><%= cliente.getDniCliente() %></td>
+                <td><%= cliente.getNombre() %></td>
+                <td><%= cliente.getApellido() %></td>
+                <td><%= cliente.getEsAdmin() %></td>
+                <td><button>SetAdmin</button></td>
+                <td><button>Borrar</button></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+
+
+
 </body>
 </html>

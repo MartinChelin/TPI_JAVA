@@ -2,8 +2,11 @@ package Data;
 
 import java.sql.*;
 import Entidades.*;
+import Logicas.LogCategoria;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 
 public class ClienteData {
 	
@@ -168,7 +171,49 @@ public class ClienteData {
             }
 		}
     }
-	
+	//Cuando un método en Java es declarado como static, significa que 
+	//pertenece a la clase en lugar de una instancia específica de la clase. 
+	public static LinkedList<Cliente> getAll(){
+		LinkedList<Cliente> clientes = new LinkedList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String dateFormat = "dd/MM/yyyy";
+		DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
+		LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
+		
+		try {
+			stmt = DbHandler.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select * from cliente");
+			if (rs!=null) {
+				while (rs.next()) {
+					Cliente c = new Cliente();
+					c.setDniCliente(rs.getString("dniCliente"));
+					c.setNombre(rs.getString("nombre"));
+					c.setApellido(rs.getString("apellido"));
+					c.setMail(rs.getString("mail"));
+					c.setFechaNac(fechaDefault);
+					c.setUsuario(rs.getString("usuario"));
+					c.setContraseña(rs.getString("contraseña"));
+					c.setNroTarjeta(rs.getInt("nro_tarjeta"));
+					c.setEsAdmin(rs.getInt("esAdmin"));
+					clientes.add(c);
+					}
+				}
+			} catch (SQLException e) {
+			e.printStackTrace();
+					} finally {
+								try {
+									if(rs!=null) {rs.close();}
+									if(stmt!=null) {stmt.close();}
+									DbHandler.getInstancia().releaseConn();
+									} catch (SQLException e) {
+											e.printStackTrace();
+									}
+								}
+		return clientes;
 	}
+
+}
 	
 	//PROXS METODOS
