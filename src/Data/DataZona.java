@@ -1,5 +1,6 @@
 package Data;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,4 +38,21 @@ public class DataZona {
 								}
 		return zonas;
 	}
+	public static void deleteZona(String codZona) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from zona where codZona=?");
+			pstmt.setString(1,codZona);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
 }
