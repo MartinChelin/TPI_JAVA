@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ page import="Entidades.Cliente" %>
+ <%@ page import="Entidades.Proveedor" %>
  <%@ page import="java.util.LinkedList" %>   
  
 <!DOCTYPE html>
@@ -142,31 +142,33 @@
     </div>
 </header>
 
-<h1>Listado de Clientes</h1>
+<h1>Listado de Proveedores</h1>
 	<button class="add-provider-btn" onclick="window.location.href='registrarProveedor.jsp'">Añadir un proveedor</button>
     <table border="1">
         <thead>
             <tr>
                 <th>DNI</th>
                 <th>Nombre</th>
-                <th>Correo Electrónico</th>
-                <th>EsAdmin</th>
-                <th>ConfigAdmin</th>
-                <th>Borrar Cliente</th>
+                <th>Apellido</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Correo Electronico</th>
                 
             </tr>
         </thead>
         <tbody>
             <% 
-                LinkedList<Cliente> listaClientes = (LinkedList<Cliente>) request.getAttribute("listaClientes");
-                for (Cliente cliente : listaClientes) {
+                LinkedList<Proveedor> listaProveedores = (LinkedList<Proveedor>) request.getAttribute("listaProveedores");
+                for (Proveedor proveedor : listaProveedores) {
             %>
             <tr>
-                <td><%= cliente.getDniCliente() %></td>
-                <td><%= cliente.getNombre() %></td>
-                <td><%= cliente.getApellido() %></td>
-                <td><%= cliente.getEsAdmin() %></td>
-                <td><button>SetAdmin</button></td>
+                <td><%= proveedor.getDni() %></td>
+                <td><%= proveedor.getNombre() %></td>
+                <td><%= proveedor.getApellido() %></td>
+                <td><%= proveedor.getTelefono() %></td>
+                <td><%= proveedor.getDireccion() %></td>
+                <td><%= proveedor.getMail() %></td>
+                <td><button>Modificar</button></td>
                 <td><button>Borrar</button></td>
             </tr>
             <% } %>

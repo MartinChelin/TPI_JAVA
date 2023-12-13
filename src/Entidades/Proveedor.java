@@ -17,6 +17,9 @@ public class Proveedor {
 		this.telefono = telefono;
 		this.direccion = direccion;
 	}
+	public Proveedor() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getDni() {
 		return dni;
 	}

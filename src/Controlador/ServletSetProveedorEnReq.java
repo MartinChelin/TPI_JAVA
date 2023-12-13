@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.ClienteData;
-import Entidades.Cliente;
+
+import Data.ProveedorData;
+import Entidades.Proveedor;
 
 @WebServlet("/ServletSetProveedorEnReq")
 public class ServletSetProveedorEnReq extends HttpServlet {
@@ -24,8 +25,8 @@ public class ServletSetProveedorEnReq extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		LinkedList<Cliente> listaClientes = ClienteData.getAll();
-		request.setAttribute("listaClientes", listaClientes);
+		LinkedList<Proveedor> listaProveedores = ProveedorData.getAll();
+		request.setAttribute("listaProveedores", listaProveedores);
 		
 		request.getRequestDispatcher("/controlProveedores.jsp").forward(request, response);
 	}
