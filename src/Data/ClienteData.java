@@ -232,9 +232,6 @@ public class ClienteData {
 		}
 	}
 	
-<<<<<<< HEAD
-}	
-=======
 	public void updateCliente(Cliente cli) {
 		PreparedStatement pstmt=null;
 		try {
@@ -283,5 +280,4 @@ public class ClienteData {
 	
 }
 	
->>>>>>> tiago
 	//PROXS METODOS
