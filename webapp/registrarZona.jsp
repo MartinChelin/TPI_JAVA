@@ -15,12 +15,12 @@
     <div class = "row">
     	<div class = "col-2"></div>
     	<div class="col-4">
-    <form action="registrarProveedor" method="post">
+    <form action="registrarZona" method="post">
         <br>
         <br>
 
         <label class="form-label">Codigo:</label>
-        <input class="form-control" type="text" id="codigo" name="codigo" required><br>
+        <input class="form-control" type="text" id="codZona" name="codZona" required><br>
 
         <label class="form-label">Descripción:</label>
         <input class="form-control" type="text" id="descripcion" name="descripcion" required><br>
