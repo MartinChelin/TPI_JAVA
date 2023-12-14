@@ -143,7 +143,7 @@ public class ProveedorData {
 		Proveedor prov = new Proveedor(0, "", "", "", "", "");
 	
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from proveedor where dni=?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from proveedor where dniProveedor=?");
 			pstmt.setInt(1, dniProveedor);
 			rs = pstmt.executeQuery();
 	
