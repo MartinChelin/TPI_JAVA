@@ -12,7 +12,6 @@
   <body>
     <div class ="container"><br>
     <center><h1>Login App</h1></center><br>
-    <center><h5>Username = admin<br>Password = admin</h5></center>
     <div class = "row">
     	<div class = "col-2"></div>
     	<div class = "col-4">

@@ -30,8 +30,7 @@ public class ServletRegistrar extends HttpServlet {
         String fechaNac = request.getParameter("fechaNac");
 
         newCliente.addNewCliente(dniCliente, nombre, apellido, mail, fechaNac, usuario, password, 0 ,0);
-        request.getRequestDispatcher("login.jsp");
-        response.getWriter().append("Carga Completa").append(request.getContextPath());
+        request.getRequestDispatcher("login.jsp").forward(request, response);
 
     }
 
