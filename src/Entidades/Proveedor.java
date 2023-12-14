@@ -1,6 +1,6 @@
 package Entidades;
 public class Proveedor {
-	private int dni;
+	private int dniProveedor;
 	private String nombre;
 	private String apellido;
 	private String mail;	
@@ -8,9 +8,9 @@ public class Proveedor {
 	private String direccion;
 	
 	
-	public Proveedor(int dni, String nombre, String apellido, String mail, int telefono, String direccion) {
+	public Proveedor(int dniProveedor, String nombre, String apellido, String mail, int telefono, String direccion) {
 		super();
-		this.dni = dni;
+		this.dniProveedor = dniProveedor;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.mail = mail;
@@ -20,11 +20,12 @@ public class Proveedor {
 	public Proveedor() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public int getDni() {
-		return dni;
+		return dniProveedor;
 	}
-	public void setDni(int dni) {
-		this.dni = dni;
+	public void setDni(int dniProveedor) {
+		this.dniProveedor = dniProveedor;
 	}
 	public String getNombre() {
 		return nombre;
