@@ -1,9 +1,6 @@
 package Controlador;
 
 import java.io.IOException;
-import java.util.LinkedList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,32 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 import Data.DataZona;
 import Entidades.Zona;
 
-@WebServlet("/ServletSetZonaEnReq")
-public class ServletSetZonaEnReq extends HttpServlet {
+@WebServlet("/ServletModificarZona")
+public class ServletModificarZona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ServletSetZonaEnReq() {
+       
+    public ServletModificarZona() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		LinkedList<Zona> listaZonas = DataZona.getAll();
-		request.setAttribute("listaZonas", listaZonas);
-		
-		request.getRequestDispatcher("/controlZona.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		int codZona = Integer.valueOf(request.getParameter("codZona"));
-		request.setAttribute("codZona", codZona);
-		request.getRequestDispatcher("/modificarZona.jsp").forward(request, response);
-		doGet(request, response);
+		Zona zona = DataZona.searchByCod(codZona);
+		String descripcion = request.getParameter("descripcion"); 
+		
+		DataZona.updateZona(zona.getCodZona(), descripcion);
+		
+		request.getRequestDispatcher("/mainAdmin.jsp").forward(request, response);
 	}
 
 }
-

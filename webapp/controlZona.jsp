@@ -160,8 +160,11 @@
             <tr>
                 <td><%= zona.getCodZona() %></td>
                 <td><%= zona.getDescripcion() %></td>
-                <td><button>Modificar</button></td>
-                <td><button>Borrar</button></td>
+ 				<td>
+ 					<form action="ServletSetZonaEnReq" method="post">
+        				<button name="codZona" class="add-provider-btn" value="<%= zona.getCodZona()%>">Modificar</button>
+        			</form>
+				</td>
                 <td>
     				<form action="ServletBorrarZona" method="post">
         				<button name="codZona" value="<%= zona.getCodZona()%>">Borrar</button>
@@ -170,10 +173,9 @@
             </tr>
             <% } %>
         </tbody>
+        
+        
     </table>
-
-
-
 
 </body>
 </html>

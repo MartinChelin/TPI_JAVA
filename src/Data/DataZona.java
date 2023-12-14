@@ -4,8 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 
+import Entidades.Cliente;
 import Entidades.Zona;
 
 public class DataZona {
@@ -85,5 +88,55 @@ public class DataZona {
 				e.printStackTrace();
 			}
 		}
-	}	
+	}
+
+	public static Zona searchByCod(int codZona){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		Zona zona = new Zona(0, "");
+	
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from zona where codZona=?");
+			pstmt.setInt(1, codZona);
+			rs = pstmt.executeQuery();
+	
+            if(rs!=null && rs.next()) {
+            	zona.setCodZona(rs.getInt(("codZona")));
+            	zona.setDescripcion(rs.getString(("descripcion")));
+            }
+        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+						if(rs!=null) {rs.close();}
+						if(pstmt!=null) {pstmt.close();}
+						DbHandler.getInstancia().releaseConn();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+			}
+		return zona;
+	}
+
+	public static void updateZona(int codZona, String descripcion) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt=null;
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update zona set descripcion=? where codZona=?");
+			pstmt.setString(1,descripcion);
+			pstmt.setInt(2,codZona);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
