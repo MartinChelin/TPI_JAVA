@@ -1,12 +1,15 @@
 package Controlador;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Entidades.Producto;
 import Logicas.*;
 
 /**
@@ -40,7 +43,9 @@ public class ProductoEliminar extends HttpServlet {
 		LogProducto control = new LogProducto();
 		int idProd = Integer.parseInt(request.getParameter("CodProd"));
 		control.delete(idProd);
-		request.getRequestDispatcher("Inicio.html").forward(request, response);
+		LinkedList<Producto> productos =  control.getAll();
+		request.setAttribute("listaProductos", productos);
+		request.getRequestDispatcher("listaProducto.jsp").forward(request, response);
 		response.getWriter().append("Eliminado");
 	}
 

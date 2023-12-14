@@ -1,6 +1,8 @@
 package Controlador;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +38,7 @@ public class ProductoEditar extends HttpServlet {
 		int codigo = Integer.parseInt(request.getParameter("CodProd"));
 		prodedit = control.getOne(codigo);
 		request.setAttribute("prodedit", prodedit);
-		request.getRequestDispatcher("WEB-INF/FormularioEditProd.jsp").forward(request, response);
+		request.getRequestDispatcher("FormularioEditProd.jsp").forward(request, response);
 	}
 
 	/**
@@ -60,7 +62,9 @@ public class ProductoEditar extends HttpServlet {
 		prod.setCat(cate);
 		LogProducto controlp = new LogProducto();
 		controlp.update(prod);
-		request.getRequestDispatcher("Inicio.html").forward(request, response);
+		LinkedList<Producto> productos =  controlp.getAll();
+		request.setAttribute("listaProductos", productos);
+		request.getRequestDispatcher("listaProducto.jsp").forward(request, response);
 	}
 
 }

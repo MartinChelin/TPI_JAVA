@@ -138,7 +138,7 @@
     <div>
         <ul class="button-list">
             <li><form action="ServletSetClientesEnReq" method="get"><button>Clientes</button></form></li>
-            <li><button>Productos</button></li>
+            <li><form action="ProductoLista" method="get"><button>Productos</button></form></li>
             <li><form action="ServletSetCategoriaEnReq" method="get"><button>Categoria</button></form></li>
             <li><form action="ServletSetProveedorEnReq" method="get"><button>Proveedores</button></form></li>
             <li><button>Historial de valores</button></li>

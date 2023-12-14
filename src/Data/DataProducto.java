@@ -48,7 +48,7 @@ public class DataProducto {
 	public void addProd(Producto addp) {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("insert into producto (codProd,nombre,descripcion,stock,precioBase,codCat) values (?,?,?,?,?,?)");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("insert into producto (codProducto,nombre,descripcion,stock,precioBase,codCategoria) values (?,?,?,?,?,?)");
 			pstmt.setInt(1,addp.getCodProd());
 			pstmt.setString(2,addp.getNombre());
 			pstmt.setString(3,addp.getDescripcion());
@@ -71,7 +71,7 @@ public class DataProducto {
 	public void deleteProd(int delp) {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from producto where codProd=?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from producto where codProducto=?");
 			pstmt.setInt(1,delp);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -89,7 +89,7 @@ public class DataProducto {
 	public void updateProd(Producto updp) {
 		PreparedStatement pstmt=null;
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update producto set nombre=?, descripcion=?, stock=?, precioBase=?, codCat=? where codProd=?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update producto set nombre=?, descripcion=?, stock=?, precioBase=?, codCategoria=? where codProducto=?");
 			pstmt.setString(1,updp.getNombre());
 			pstmt.setString(2,updp.getDescripcion());
 			pstmt.setInt(3,updp.getStock());

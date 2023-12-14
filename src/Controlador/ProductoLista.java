@@ -37,7 +37,7 @@ public class ProductoLista extends HttpServlet {
 		
 		LinkedList<Producto> productos =  lp.getAll();
 		request.setAttribute("listaProductos", productos);
-		request.getRequestDispatcher("WEB-INF/listaProducto.jsp").forward(request, response);
+		request.getRequestDispatcher("listaProducto.jsp").forward(request, response);
 	}
 
 	/**
@@ -61,7 +61,9 @@ public class ProductoLista extends HttpServlet {
 		nuevaproducto.setPrecioBase(precio);
 		nuevaproducto.setCat(c);
 		lp.add(nuevaproducto);
-		request.getRequestDispatcher("Inicio.html").forward(request, response);
+		LinkedList<Producto> productos =  lp.getAll();
+		request.setAttribute("listaProductos", productos);
+		request.getRequestDispatcher("listaProducto.jsp").forward(request, response);
 	}
 
 }
