@@ -114,17 +114,17 @@ public class DataProducto {
 		ResultSet rs = null;
 		Producto p = new Producto();
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from producto where codProd = ?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from producto where codProducto = ?");
 			pstmt.setInt(1,id);
 			rs = pstmt.executeQuery();
 			if (rs!=null && rs.next()) {
-					p.setCodProd(rs.getInt("codProd"));
+					p.setCodProd(rs.getInt("codProducto"));
 					p.setNombre(rs.getString("nombre"));
 					p.setDescripcion(rs.getString("descripcion"));
 					p.setStock(rs.getInt("stock"));
 					p.setPrecioBase(rs.getDouble("precioBase"));
 					LogCategoria control = new LogCategoria();
-					p.setCat(control.getOne(rs.getInt("codCat")));
+					p.setCat(control.getOne(rs.getInt("codCategoria")));
 					}
 			} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,7 +139,5 @@ public class DataProducto {
 								}
 		return p;
 	}
-
-
 }
 

@@ -1,4 +1,5 @@
-/Controlador/
-/Logicas/
 /Data/
 /Entidades/
+/Logicas/
+/.gitignore
+/Controlador/

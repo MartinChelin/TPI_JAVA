@@ -16,10 +16,11 @@
     	}
     	%>    
 	<%
+		
 		String username = (String)session.getAttribute("username");
 		LinkedList<Producto> lp = (LinkedList<Producto>)request.getAttribute("listaProductos");
+		
 	%>
-    
 <style>
     /* Estilos para el cuerpo */
     body {
@@ -125,7 +126,7 @@
         border-radius: 5px;
         font-weight: bold;
         cursor: pointer;
-        width: 80%;
+        width: 100%;
         transition: all 500ms ease;
         box-sizing: border-box;
     }
@@ -162,19 +163,63 @@
         font-weight: bold;
         color: #333;
     }
-</style>
-        <%
-    	if(session.getAttribute("username")==null){
-    		response.sendRedirect("login.jsp");
-    	}
-    	%>    
+    
+    /* Estilos para el carrito */
+    .cart {
+        position: fixed;
+        top: 130px;
+        right: 0;
+        width: 300px;
+        height: 100vh;
+        background-color: #f2f2f2;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .cart-item img {
+        max-width: 50px;
+        max-height: 50px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .cart-subtotal {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    
+    main {
+        margin-top: 50px;
+        
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    
+    label {
+    color: orange;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 18px;
+  }
+</style>    
 <body>
     <header>
     <img class="img" src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
     <div class="cabeza">
         <nav>
-            <a href="#">Inicio</a>
+            <a href="/ServletCarrito?accion=default">Inicio</a>
             <a href="#">Título...</a>
+            <form action="ServletCarrito" method="GET">
+            	<button type="submit">Ver Carrito</button>
+            </form>
         </nav>
         <div class="user-info">
             <span class="username"><%= username %></span>
@@ -194,13 +239,19 @@
         <div class="product-card">        
             <div class="product-card-content">
                 <img src="https://example.com/product1.jpg" alt="Product 1">
-                <h2><%=prod.getNombre()%></h2>
+                <form action="ServletCarrito" method="POST">
+               	<h2><%=prod.getNombre()%></h2>
                 <p><%=prod.getDescripcion()%></p>
                 <span>$<%=prod.getPrecioBase()%></span>
                 <span>Stock: <%=prod.getStock()%></span>
+                <br>
+				<input type="hidden" name="codProducto" value="<%=prod.getCodProd()%>">	
+				<input type="submit" value="Agregar Producto">
+				</form>
             </div>
         </div>
         <% } %>
+        
         <div class="product-card">
             <div class="product-card-content">
                 <img src="https://example.com/product2.jpg" alt="Product 2">
