@@ -224,9 +224,9 @@
     <img class="img" src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
     <div class="cabeza">
         <nav>
-            <a href="ServletCarrito?accion=default">Inicio</a>
+            <a href="mainCliente.jsp">Inicio</a>
             <a href="#">Título...</a>
-            <a href="carrito.jsp">(<label class="label">contador</label>) Ver Carrito</a>
+            <a href="carrito.jsp">Ver Carrito</a>
         </nav>
         <div class="user-info">
             <span class="username"><%= username %></span>
