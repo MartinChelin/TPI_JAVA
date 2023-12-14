@@ -21,6 +21,11 @@
         <br>
 
         <label class="form-label">dniProveedor:</label>
+        <%
+        	int dniProveedor = Integer.valueOf(request.getParameter("dniProveedor"));
+        %>
+        <input class="form-control" type="text" id="dniProveedor" name="dniProveedor" required><br>
+        <input name= dniProveedor class="form-control" value = "<%=dniProveedor%>" type="hidden" id="dniProveedor" required><br>
         
         <label class="form-label">Nombre:</label>
         <input class="form-control" type="text" id="nombre" name="nombre" required><br>
@@ -36,11 +41,6 @@
         
         <label class="form-label">Mail:</label>
         <input class="form-control" type="email" id="mail" name="mail" required><br>
-        <%
-        	int dniProveedor = Integer.valueOf(request.getParameter("dniProveedor"));
-        %>
-        <input class="form-control" type="text" id="dniProveedor" name="dniProveedor" required><br>
-        <input name= dniProveedor class="form-control" value = "<%=dniProveedor%>" type="hidden" id="dniProveedor" required><br>
         
         
         <button name="modificarZona">Modificar Proveedor</button>
