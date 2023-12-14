@@ -19,13 +19,10 @@
     <form action="ServletModificarProveedor" method="post">
         <br>
         <br>
-
-        <label class="form-label">dniProveedor:</label>
         <%
         	int dniProveedor = Integer.valueOf(request.getParameter("dniProveedor"));
         %>
-        <input class="form-control" type="text" id="dniProveedor" name="dniProveedor" required><br>
-        <input name= dniProveedor class="form-control" value = "<%=dniProveedor%>" type="hidden" id="dniProveedor" required><br>
+        <input name="dniProveedor" class="form-control" value="<%=dniProveedor%>" type="hidden" required><br>
         
         <label class="form-label">Nombre:</label>
         <input class="form-control" type="text" id="nombre" name="nombre" required><br>
@@ -43,7 +40,7 @@
         <input class="form-control" type="email" id="mail" name="mail" required><br>
         
         
-        <button name="modificarZona">Modificar Proveedor</button>
+        <button type = "submit">Modificar Proveedor</button>
     </form>
 </div>
 

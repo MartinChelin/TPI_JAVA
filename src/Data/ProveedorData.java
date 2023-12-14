@@ -97,7 +97,7 @@ public class ProveedorData {
 	public static void updateProveedor(int dniProveedor, String nombre, String apellido,String tel, String direccion, String mail) {
 		PreparedStatement pstmt=null;
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update Proveedor set nombre=?, apellido=?, tel=?, direccion=?, mail=? where dniProveedor=?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update proveedor set nombre=?, apellido=?, tel=?, direccion=?, mail=? where dniProveedor=?");
 			pstmt.setString(1,nombre);
 			pstmt.setString(2,apellido);
 			pstmt.setString(3,tel);

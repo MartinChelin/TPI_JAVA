@@ -1,6 +1,8 @@
 package Controlador;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +35,9 @@ public class ServletModificarProveedor extends HttpServlet {
 		String mail = request.getParameter("mail");
 		
 		ProveedorData.updateProveedor(prov.getDni(), nombre, apellido, tel, direccion, mail);
-		
-		request.getRequestDispatcher("/mainAdmin.jsp").forward(request, response);
+		LinkedList<Proveedor> listaProveedores = ProveedorData.getAll();
+		request.setAttribute("listaProveedores", listaProveedores);
+		request.getRequestDispatcher("/controlProveedores.jsp").forward(request, response);
 	}
 
 }
