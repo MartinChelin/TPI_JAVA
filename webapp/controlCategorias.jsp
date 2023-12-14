@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="Entidades.Cliente"%>
+ <%@ page import="Entidades.Categoria" %>
+ <%@ page import="java.util.LinkedList" %>   
+ 
 <!DOCTYPE html>
-<html lang="es">
+<html>
+
+
 <head>
-    <meta charset="UTF-8">
-    <title>Pagina Inicial de Admin</title>
+	<meta charset="ISO-8859-1">
+	<title>Control Categoria</title>
     <%
     	if(session.getAttribute("username")==null){
     		response.sendRedirect("login.jsp");
     	}
-    	%>    
+    %>    
 	<%
 		String username = (String)session.getAttribute("username");
 	%>
@@ -119,8 +123,10 @@
     }
     </style>
 </head>
+
+
 <body>
-    <header>
+ <header>
     <img class="img" src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
     <div class="cabeza">
         <nav>
@@ -134,18 +140,42 @@
             </form>
         </div>
     </div>
-	</header>
-    <div>
-        <ul class="button-list">
-            <li><form action="ServletSetClientesEnReq" method="get"><button>Clientes</button></form></li>
-            <li><button>Productos</button></li>
-            <li><form action="ServletSetCategoriaEnReq" method="get"><button>Categoria</button></form></li>
-            <li><form action="ServletSetProveedorEnReq" method="get"><button>Proveedores</button></form></li>
-            <li><button>Historial de valores</button></li>
-            <li><button>Repartidores</button></li>
-            <li><form action="ServletSetZonaEnReq" method="get"><button>Zonas</button></form></li>
-            <li><button>Reclamos</button></li>
-        </ul>
-    </div>
+</header>
+
+<h1>Listado de Categorias</h1>
+	<button class="add-provider-btn" onclick="window.location.href='registrarCategoria.jsp'">Añadir una Categoria</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                LinkedList<Categoria> listaCategorias = (LinkedList<Categoria>) request.getAttribute("listaCategorias");
+                for (Categoria categoria : listaCategorias) {
+            %>
+            <tr>
+                <td><%= categoria.getCodCat() %></td>
+                <td><%= categoria.getDescripcion() %></td>
+                 <td>
+ 					<form action="ServletSetCategoriaEnReq" method="post">
+        				<button name="codCategoria" class="add-provider-btn" value="<%= categoria.getCodCat()%>">Modificar</button>
+        			</form>
+				</td>
+                <td>
+    				<form action="ServletBorrarCategoria" method="post">
+        				<button name="codCategoria" value="<%= categoria.getCodCat()%>">Borrar</button>
+    				</form>
+				</td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+
+
+
 </body>
 </html>

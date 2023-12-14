@@ -10,18 +10,18 @@ import java.util.LinkedList;
 
 public class DataCategoria {
 
-	public LinkedList<Categoria> getAll(){
+	public static LinkedList<Categoria> getAll(){
 		LinkedList<Categoria> cats = new LinkedList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		
 		try {
 			stmt = DbHandler.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select codCat, descripcion from categoria");
+			rs = stmt.executeQuery("select codCategoria, descripcion from categoria");
 			if (rs!=null) {
 				while (rs.next()) {
 					Categoria c = new Categoria();
-					c.setCodCat(rs.getInt("codCat"));
+					c.setCodCat(rs.getInt("codCategoria"));
 					c.setDescripcion(rs.getString("descripcion"));
 					cats.add(c);
 					}
@@ -43,7 +43,7 @@ public class DataCategoria {
 	public void addCat(Categoria addc) {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("insert into categoria (codCat,descripcion) values (?,?)");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("insert into categoria (codCategoria,descripcion) values (?,?)");
 			pstmt.setInt(1,addc.getCodCat());
 			pstmt.setString(2,addc.getDescripcion());
 			pstmt.executeUpdate();
@@ -59,10 +59,10 @@ public class DataCategoria {
 		}
 	}
 	
-	public void deleteCat(int delc) {
+	public static void deleteCat(int delc) {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from categoria where codCat=?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from categoria where codCategoria=?");
 			pstmt.setInt(1,delc);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -77,12 +77,13 @@ public class DataCategoria {
 		}
 	}
 	
-	public void updateCat(Categoria updc) {
+	public static void updateCat(int codCategoria, String descripcion) {
+		// TODO Auto-generated method stub
 		PreparedStatement pstmt=null;
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update categoria set descripcion=? where codCat=?");
-			pstmt.setString(1,updc.getDescripcion());
-			pstmt.setInt(2,updc.getCodCat());
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update categoria set descripcion=? where codCategoria=?");
+			pstmt.setString(1,descripcion);
+			pstmt.setInt(2,codCategoria);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -96,7 +97,10 @@ public class DataCategoria {
 		}
 	}
 	
-	public Categoria getOne(int id) {
+	
+	
+	
+	public static Categoria getOne(int id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Categoria c = new Categoria();

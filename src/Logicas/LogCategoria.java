@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import Data.DataCategoria;
 import Entidades.Categoria;
 
+
 public class LogCategoria {
 	private DataCategoria dc;
 	
@@ -13,7 +14,7 @@ public class LogCategoria {
 	}
 	
 	public LinkedList<Categoria> getAll(){
-		return dc.getAll();
+		return DataCategoria.getAll();
 	}
 	
 	public void add(Categoria addc) {
@@ -21,14 +22,14 @@ public class LogCategoria {
 	}
 	
 	public void delete(int delc) {
-		dc.deleteCat(delc);
+		DataCategoria.deleteCat(delc);
 	}
 	
 	public void update(Categoria updc) {
-		dc.updateCat(updc);
+		DataCategoria.updateCat(updc.getCodCat(), updc.getDescripcion());
 	}
 	
 	public Categoria getOne(int searchc) {
-		return dc.getOne(searchc);
+		return DataCategoria.getOne(searchc);
 	}
 }
