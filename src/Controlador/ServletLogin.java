@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import Logicas.ClienteLogic;
 import Logicas.LogProducto;
+import Entidades.Cliente;
 import Entidades.Producto;
 
 @WebServlet("/login")
@@ -24,17 +25,29 @@ public class ServletLogin extends HttpServlet {
 		ClienteLogic cliLogic = new ClienteLogic();
 		LogProducto proLogic = new LogProducto();
 		LinkedList<Producto> productos = proLogic.getAll();
-		boolean verificacion = cliLogic.VerifyUser(uname, pass);
+		Cliente user = cliLogic.verifyExist(uname);
 		
-		//if (uname.equals("admin") && pass.equals("admin"))
-		if (verificacion == true)
+		if (user != null)
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("username", uname);
-			request.setAttribute("listaProductos", productos);
-			request.getRequestDispatcher("main.jsp").forward(request, response);
-		}
+			boolean verificacion = cliLogic.verifyPass(user, pass);
+			if (verificacion == true) {
+				if (user.getEsAdmin() == 0) {
+					HttpSession session = request.getSession();
+					session.setAttribute("username", uname);
+					request.setAttribute("listaProductos", productos);
+					request.getRequestDispatcher("mainCliente.jsp").forward(request, response);
+				}
+				else {
+					HttpSession session = request.getSession();
+					session.setAttribute("username", uname);
+					request.setAttribute("listaProductos", productos);
+					request.getRequestDispatcher("mainAdmin.jsp").forward(request, response);
+				}
+			}
+			///Falta cartel de error de contraseña incorrecta
+		} 
 		else {
+			///Falta cartel de usuario no encontrado
 			response.sendRedirect("login.jsp");
 		}
 	}

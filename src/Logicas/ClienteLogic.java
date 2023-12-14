@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.management.relation.Role;
 public class ClienteLogic {
 	
 	public ClienteLogic() {
@@ -38,7 +40,7 @@ public class ClienteLogic {
 		return control;
 	}
 
-	public void addNewCliente(String dniCliente, String nombre, String apellido, String mail, String fechaNac, String usuario, String password, int nroTarjeta, String rol) {
+	public void addNewCliente(String dniCliente, String nombre, String apellido, String mail, String fechaNac, String usuario, String password, int nroTarjeta, int esAdmin) {
 		ClienteData cliData = new ClienteData();
 		try {
             // Crear un objeto SimpleDateFormat para el formato ISO
@@ -57,7 +59,7 @@ public class ClienteLogic {
     		DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
     		LocalDate fechaNacimiento = LocalDate.parse(fechaEuropea, dFormat);
     		
-    		Cliente cli = new Cliente(dniCliente, nombre, apellido, mail, fechaNacimiento, usuario, password, nroTarjeta, rol);
+    		Cliente cli = new Cliente(dniCliente, nombre, apellido, mail, fechaNacimiento, usuario, password, nroTarjeta, esAdmin);
     		
     		cliData.addCliente(cli);
 
@@ -71,23 +73,18 @@ public class ClienteLogic {
 		
 	}
 
-	public boolean VerifyUser(String uname, String pass) {
+	public Cliente verifyExist(String uname) {
 		ClienteData cliData = new ClienteData();
 		Cliente cli = cliData.searchByUsername(uname);
-		
-		if (cli.getDniCliente() != "") {
-			if (cli.getContraseña().equals(pass)) {
-				return true;
-			}
-			else {
-				return false;
-			}
+		return cli;
+	}
+
+	public boolean verifyPass(Cliente user, String pass) {
+		if (user.getContraseña().equals(pass)) {
+			return true;
 		}
 		else {
 			return false;
 		}
-		
-	}
-
-	
+	}	
 }

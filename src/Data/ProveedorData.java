@@ -1,5 +1,9 @@
 package Data;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+
 import Entidades.*;
 public class ProveedorData {
 	
@@ -38,4 +42,56 @@ public class ProveedorData {
             }
 		}
     }
+
+	public static LinkedList<Proveedor> getAll(){
+		LinkedList<Proveedor> proveedores = new LinkedList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = DbHandler.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select * from proveedor");
+			if (rs!=null) {
+				while (rs.next()) {
+					Proveedor p = new Proveedor();
+					p.setDni(rs.getInt("dniProveedor"));
+					p.setNombre(rs.getString("nombre"));
+					p.setApellido(rs.getString("apellido"));
+					p.setMail(rs.getString("mail"));
+					p.setDireccion(rs.getString("direccion"));
+					p.setTelefono(rs.getInt("tel"));
+					proveedores.add(p);
+					}
+				}
+			} catch (SQLException e) {
+			e.printStackTrace();
+					} finally {
+								try {
+									if(rs!=null) {rs.close();}
+									if(stmt!=null) {stmt.close();}
+									DbHandler.getInstancia().releaseConn();
+									} catch (SQLException e) {
+											e.printStackTrace();
+									}
+								}
+		return proveedores;
+	}
+	
+	public static void deleteProveedor(String dniProv) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("delete from proveedor where dniProveedor=?");
+			pstmt.setString(1,dniProv);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null) {pstmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
 }
