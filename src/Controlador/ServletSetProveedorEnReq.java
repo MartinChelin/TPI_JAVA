@@ -30,11 +30,11 @@ public class ServletSetProveedorEnReq extends HttpServlet {
 		
 		request.getRequestDispatcher("/controlProveedores.jsp").forward(request, response);
 	}
-
-	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int dniProveedor = Integer.valueOf(request.getParameter("dniProveedor"));
+		request.setAttribute("dniProveedor", dniProveedor);
+		request.getRequestDispatcher("/modificarProveedor.jsp").forward(request, response);
 		doGet(request, response);
 	}
 
