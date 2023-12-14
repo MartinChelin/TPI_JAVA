@@ -251,23 +251,7 @@
             </div>
         </div>
         <% } %>
-        
-        <div class="product-card">
-            <div class="product-card-content">
-                <img src="https://example.com/product2.jpg" alt="Product 2">
-                <h2>Product 2</h2>
-                <p>Description of Product 2</p>
-                <span>$24.99</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-card-content">
-                <img src="https://example.com/product3.jpg" alt="Product 3">
-                <h2>Product 3</h2>
-                <p>Description of Product 3</p>
-                <span>$14.99</span>
-            </div>
-        </div>
+
         <!-- Add more product cards here -->
     </div>
     </main>

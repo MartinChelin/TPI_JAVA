@@ -118,6 +118,6 @@ public class ServletCarrito extends HttpServlet {
 		listaCarrito.add(car);
 		LinkedList<Producto> productos = logp.getAll();
 		request.setAttribute("listaProductos", productos);
-	    request.getRequestDispatcher("main.jsp").forward(request, response);
+	    request.getRequestDispatcher("mainCliente.jsp").forward(request, response);
 	}
 }
