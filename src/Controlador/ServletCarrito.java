@@ -58,35 +58,7 @@ public class ServletCarrito extends HttpServlet {
 				
 		}
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     Producto p = new Producto();
     LogProducto logp = new LogProducto();
     int cantidad=1, item;
