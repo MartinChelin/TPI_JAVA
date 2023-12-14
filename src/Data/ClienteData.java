@@ -2,7 +2,6 @@ package Data;
 
 import java.sql.*;
 import Entidades.*;
-import Logicas.LogCategoria;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

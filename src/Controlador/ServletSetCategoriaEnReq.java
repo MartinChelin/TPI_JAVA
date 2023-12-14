@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Data.DataCategoria;
-import Data.ProveedorData;
 import Entidades.Categoria;
-import Entidades.Proveedor;
 
 @WebServlet("/ServletSetCategoriaEnReq")
 public class ServletSetCategoriaEnReq extends HttpServlet {

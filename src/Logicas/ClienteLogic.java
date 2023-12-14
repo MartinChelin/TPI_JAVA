@@ -7,7 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.management.relation.Role;
 public class ClienteLogic {
 	
 	public ClienteLogic() {

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Data.DataCategoria;
-import Data.DataZona;
 
 
 @WebServlet("/ServletBorrarCategoria")
