@@ -4,11 +4,11 @@ public class Proveedor {
 	private String nombre;
 	private String apellido;
 	private String mail;	
-	private int telefono;
+	private String telefono;
 	private String direccion;
 	
 	
-	public Proveedor(int dniProveedor, String nombre, String apellido, String mail, int telefono, String direccion) {
+	public Proveedor(int dniProveedor, String nombre, String apellido, String mail, String telefono, String direccion) {
 		super();
 		this.dniProveedor = dniProveedor;
 		this.nombre = nombre;
@@ -45,10 +45,10 @@ public class Proveedor {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 	public String getDireccion() {

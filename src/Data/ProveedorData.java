@@ -19,7 +19,7 @@ public class ProveedorData {
 			stmt.setInt(1, pro.getDni());
 			stmt.setString(2, pro.getNombre());
 			stmt.setString(3, pro.getApellido());
-			stmt.setInt(4, pro.getTelefono());
+			stmt.setString(4, pro.getTelefono());
 			stmt.setString(5, pro.getDireccion());
 			stmt.setString(6, pro.getMail());
 			
@@ -59,7 +59,7 @@ public class ProveedorData {
 					p.setApellido(rs.getString("apellido"));
 					p.setMail(rs.getString("mail"));
 					p.setDireccion(rs.getString("direccion"));
-					p.setTelefono(rs.getInt("tel"));
+					p.setTelefono(rs.getString("tel"));
 					proveedores.add(p);
 					}
 				}
@@ -140,7 +140,7 @@ public class ProveedorData {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		Proveedor prov = new Proveedor(0, "", "", "", 0, "");
+		Proveedor prov = new Proveedor(0, "", "", "", "", "");
 	
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from proveedor where dni=?");
@@ -152,7 +152,7 @@ public class ProveedorData {
             	prov.setNombre(rs.getString(("nombre")));
             	prov.setApellido(rs.getString(("apellido")));
             	prov.setMail(rs.getString(("mail")));
-            	prov.setTelefono(rs.getInt(("Telefono")));
+            	prov.setTelefono(rs.getString(("Telefono")));
             	prov.setDireccion(rs.getString(("Direccion")));
 
             }

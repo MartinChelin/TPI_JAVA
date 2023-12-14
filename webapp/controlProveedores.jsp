@@ -168,7 +168,11 @@
                 <td><%= proveedor.getTelefono() %></td>
                 <td><%= proveedor.getDireccion() %></td>
                 <td><%= proveedor.getMail() %></td>
-                <td><button>Modificar</button></td>
+                <td>
+    				<form action="ServletSetProveedorEnReq" method="post">
+        				<button name="dniProveedor" value="<%= proveedor.getDni()%>">Modificar</button>
+    				</form>
+				</td>
                 <td>
     				<form action="ServletBorrarProveedor" method="post">
         				<button name="dniProveedor" value="<%= proveedor.getDni()%>">Borrar</button>

@@ -24,7 +24,7 @@ public class ServletRegistrarProveedor extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String mail = request.getParameter("mail");
-        int telefono = Integer.valueOf(request.getParameter("telefono"));
+        String telefono = request.getParameter("telefono");
         String direccion = request.getParameter("direccion");
         
         newProveedor.addNewProveedor(dni, nombre, apellido, mail, telefono, direccion);
