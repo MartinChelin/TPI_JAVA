@@ -24,7 +24,7 @@ public class ServletRegistrarZona extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         
         newZona.addNewZona(codZona, descripcion);
-        
+        request.getRequestDispatcher("mainAdmin.jsp");
         response.getWriter().append("Carga Completa").append(request.getContextPath());
 	}
 }
