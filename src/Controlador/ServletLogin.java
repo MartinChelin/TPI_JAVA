@@ -27,8 +27,7 @@ public class ServletLogin extends HttpServlet {
 		LinkedList<Producto> productos = proLogic.getAll();
 		Cliente user = cliLogic.verifyExist(uname);
 		
-		if (user != null)
-		{
+		if (user != null){
 			boolean verificacion = cliLogic.verifyPass(user, pass);
 			if (verificacion == true) {
 				if (user.getEsAdmin() == 0) {
@@ -51,5 +50,5 @@ public class ServletLogin extends HttpServlet {
 			response.sendRedirect("login.jsp");
 		}
 	}
-
 }
+

@@ -29,23 +29,29 @@
     	}
 
     	.cabeza {
-        	width: 90%;
         	max-width: 1000px;
         	margin: auto;
         	overflow: hidden;
         	display: flex; /* Added flexbox layout */
         	justify-content: space-between; /* Added alignment */
+        	align-items: center; /* Added alignment */
+
     	}
 
     	header nav {
-        	line-height: 100px; /* Ajuste de altura para alinear verticalmente */
+        	display: flex; /* Added flexbox layout */
+        	justify-content: space-between; /* Added alignment */
+        	align-items: center; /* Added alignment */
     	}
 
     	header nav a {
-        	display: inline-block;
+        	display: flex; /* Added flexbox layout */
+        	justify-content: space-between; /* Added alignment */
+        	flex-direction: row; /* Added alignment */
         	color: #fff;
         	text-decoration: none;
         	padding: 10px 20px;
+        	font-family: Calibri, sans-serif;
         	font-size: 20px;
         	font-weight: bold;
         	transition: all 500ms ease;
@@ -115,7 +121,7 @@
         max-height: 7%;
         border-radius: 100%;
         margin: 0;
-        padding: 50px 30px;
+        padding: 10px 5px;
     }
     </style>
 </head>
@@ -124,8 +130,12 @@
     <img class="img" src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
     <div class="cabeza">
         <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Título...</a>
+            <form action="ServletHeader" method="POST">
+        		<button type="submit" name="action" value="inicio" class="carrito">Inicio</button>
+        	</form>
+            <form action="ServletHeader" method="POST">
+            	<button type="submit" name="action" value="carrito" class="carrito">Ver Carrito</button>
+            </form>
         </nav>
         <div class="user-info">
             <span class="username"><%= username %></span>

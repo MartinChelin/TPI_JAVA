@@ -139,5 +139,66 @@ public class DataProducto {
 								}
 		return p;
 	}
+	
+	public LinkedList<Producto> getProdByNom(String nom, String cat,String order) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		LinkedList<Producto> prods = new LinkedList<>();
+		//Preparar consulta
+		if (nom == null) {
+			nom = "";
+		}
+		if (order == null) {
+		    order = "";
+		} else {
+		    switch (order) {
+		        case "preciomax":
+		            order = " order by precioBase desc";
+		            break;
+				default:
+					order = " order by precioBase asc";
+					break;
+		    }
+		}
+		if (cat == null) {
+			cat = "";
+		} else {
+			cat = " and codCategoria = " + cat;
+		}
+		String sql = "select * from producto where nombre like ? "+ cat + "" + order + ";";
+		try {
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement(sql);
+			pstmt.setString(1,"%" + nom + "%");
+			rs = pstmt.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					Producto p = new Producto();
+					p.setCodProd(rs.getInt("codProducto"));
+					p.setNombre(rs.getString("nombre"));
+					p.setDescripcion(rs.getString("descripcion"));
+					p.setStock(rs.getInt("stock"));
+					p.setPrecioBase(rs.getDouble("precioBase"));
+					LogCategoria control = new LogCategoria();
+					p.setCat(control.getOne(rs.getInt("codCategoria")));
+					prods.add(p);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return prods;
+	}
 }
 

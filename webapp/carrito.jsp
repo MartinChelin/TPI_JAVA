@@ -18,7 +18,7 @@
     <%
 		
 		String username = (String)session.getAttribute("username");
-		LinkedList<Carrito> lc = (LinkedList<Carrito>)request.getAttribute("carrito");
+		LinkedList<Carrito> lc = (LinkedList<Carrito>)session.getAttribute("listaCarrito");
 		
 	%>
 <style>
@@ -27,6 +27,10 @@
     border-collapse: collapse;
     border: 2px solid black;
     text-align: center;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+   	box-sizing: border-box;
   	}
 
   	th, td {
@@ -43,26 +47,36 @@
     header {
         overflow: visible; /* Updated overflow property */
         background: #252932;
+        display: flex; /* Added flexbox layout */
+        justify-content: space-between; /* Added alignment */
+        align-items: center; /* Added alignment */
+        padding: 10px 20px;
     }
 
     .cabeza {
-        width: 90%;
+        width: 100%;
         max-width: 1000px;
         margin: auto;
         overflow: hidden;
         display: flex; /* Added flexbox layout */
+        align-items: center; /* Added alignment */
         justify-content: space-between; /* Added alignment */
     }
 
     header nav {
-        line-height: 100px; /* Ajuste de altura para alinear verticalmente */
+        display: flex; /* Added flexbox layout */
+        justify-content: space-between; /* Added alignment */
+        align-items: center; /* Added alignment */
     }
 
     header nav a {
-        display: inline-block;
+        display: flex; /* Added flexbox layout */
+        justify-content: space-between; /* Added alignment */
+        flex-direction: row; /* Added alignment */
         color: #fff;
         text-decoration: none;
         padding: 10px 20px;
+        font-family: Calibri, sans-serif;
         font-size: 20px;
         font-weight: bold;
         transition: all 500ms ease;
@@ -79,21 +93,47 @@
         max-height: 7%;
         border-radius: 100%;
         margin: 0;
-        padding: 50px 30px;
+        padding: 10px 5px;
     }
+    
+    .carrito {
+	    background: #3498db;
+	    margin-left: 10px;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 500ms ease;
+            }
+	
+	.carrito:hover {
+		background: #2980b9;        
+		    }
+		    
+	.boton-comprar {
+		display: flex;
+		justify-content: center;
+	}
 
+	\* Estilos para el usuario */
     .user-info {
         display: flex;
+        justify-content: space-between;
         align-items: center;
+        padding: 10px;
     }
 
     .username {
-        margin-right: 10px;
         color: #fff;
         font-weight: bold;
+        padding: 8px 16px;
     }
 
     .logout-btn {
+    	display: flex;
+    	justify-items: center;
         background: #3498db;
         color: #fff;
         border: none;
@@ -217,16 +257,26 @@
     color: orange;
     font-family: "Roboto Condensed", sans-serif;
     font-size: 12px;
-  }
-</style>    
+  	}
+  	
+  	div {
+  		display: flex;
+  		justify-content: center;
+  		align-items: center;
+  	}
+</style>
+</head>
 <body>
     <header>
     <img class="img" src="https://th.bing.com/th/id/OIG.v9PDr7.iF6NWxCW85XcO?w=1024&amp;h=1024&amp;rs=1&amp;pid=ImgDetMain" alt="Un logo de un kiosco virtual extremadamente minimalista con colores celeste y azul oscuro">
     <div class="cabeza">
         <nav>
-            <a href="mainCliente.jsp">Inicio</a>
-            <a href="#">Título...</a>
-            <a href="carrito.jsp">Ver Carrito</a>
+            <form action="ServletHeader" method="POST">
+        		<button type="submit" name="action" value="inicio" class="carrito">Inicio</button>
+        	</form>
+            <form action="ServletHeader" method="POST">
+            	<button type="submit" name="action" value="carrito" class="carrito">Ver Carrito</button>
+            </form>
         </nav>
         <div class="user-info">
             <span class="username"><%= username %></span>
@@ -236,8 +286,9 @@
         </div>
     </div>
 	</header>
-<body>
+<main>
 	<h1>Carrito de compra</h1>
+		<div class=table>
 		<table>
 			<thead>
 				<tr>
@@ -247,6 +298,7 @@
 					<th>PRECIO</th>
 					<th>CANTIDAD</th>
 					<th>SUBTOTAL</th>
+					<th>ACCION</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -258,13 +310,33 @@
 					<td><%=prod.getPrecio() %></td>
 					<td><%=prod.getCantidad() %></td>
 					<td><%=prod.getSubtotal() %></td>
-				</tr>
-			<% } %>
+					<td>
+					<form action="ServletCarrito" method="POST">
+						<button type="submit" name="action" value="Eliminar"
+							class="carrito">Eliminar</button>
+						<input type="hidden" name="item" value="<%=prod.getItem()%>">
+					</form>
+					</td>
+			</tr>
+			<%
+			}
+			%>
 			</tbody>
 			<tfoot>
 				<tr>
-					<%Double totalPagar = (Double)request.getAttribute("totalPagar"); %>
-					<td>Total:<%=totalPagar%> </td> 
+					<%
+					Double totalPagar = (Double) session.getAttribute("totalPagar");
+					%>
+					<td colspan="7" >Total:<%=totalPagar%> </td>
+				</tr>
+			</tfoot>
 		</table>
+		</div>
+		<br>
+		<br>
+		<div class="boton-comprar">
+		<button onclick="alert('Compra realizada')" class="carrito">Comprar</button>
+		</div>
+</main>
 </body>
 </html>

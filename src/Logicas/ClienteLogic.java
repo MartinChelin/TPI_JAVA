@@ -86,4 +86,10 @@ public class ClienteLogic {
 			return false;
 		}
 	}	
+	
+	public Cliente getClienteByUser(String username) {
+		ClienteData cliData = new ClienteData();
+		Cliente cli = cliData.searchByUsername(username);
+		return cli;
+	}
 }

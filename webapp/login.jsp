@@ -11,24 +11,24 @@
   </head>
   <body>
     <div class ="container"><br>
-    <center><h1>Login App</h1></center><br>
+    <center><h1>Kiosco App</h1></center><br>
     <div class = "row">
     	<div class = "col-2"></div>
     	<div class = "col-4">
     	<form action="login">
     		<br>
     		<br>
-		    <label class="form-label">Username</label>
+		    <label class="form-label">Usuario</label>
 		    <input type="text" class="form-control" name ="uname" required>
-		  	<label class="form-label">Password</label>
+		  	<label class="form-label">Contraseña</label>
 		    <input type="password" class="form-control" name ="pass" required>
 		  	<br>
 		  	<div>
-		  		<label class="form-label">¿Don't have an account?</label>
-		  		<button type="button" class="btn btn-link" onclick="window.location.href='registrar.jsp'">Sign up</button>
+		  		<label class="form-label">¿No tienen una cuenta?</label>
+		  		<button type="button" class="btn btn-link" onclick="window.location.href='registrar.jsp'">Registrate</button>
 		  	</div>
 		  	<br>
-		  	<button type="login" class="btn btn-primary">Login</button>
+		  	<button type="login" class="btn btn-primary">Acceder</button>
 		</form>
     	</div>
     		<div class = "col-4">

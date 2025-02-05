@@ -30,6 +30,10 @@ public class LogProducto {
 	public Producto getOne(int searchp) {
 		return dp.getOne(searchp);
 	}
+	
+	public LinkedList<Producto> getProdByNom(String search, String cat,String order) {
+		return dp.getProdByNom(search, cat, order);
+	}
 }
 
 

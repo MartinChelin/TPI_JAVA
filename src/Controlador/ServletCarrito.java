@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Entidades.Carrito;
 import Entidades.Producto;
@@ -20,45 +21,6 @@ import Logicas.LogProducto;
 public class ServletCarrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     /*CARRITO*/
-    
-    
-    protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String accion = (String)request.getParameter("accion");
-		LinkedList<Producto> productos = logp.getAll();
-		switch (accion) {
-			case "AgregarCarrito":
-				int codp = Integer.parseInt(request.getParameter("id"));
-				p = logp.getOne(codp);
-				item = item + 1;
-				Carrito car = new Carrito();
-				car.setItem(item);
-				car.setCodProducto(p.getCodProd());
-				car.setNombre(p.getNombre());
-				car.setDescripcion(p.getDescripcion());
-				car.setPrecio(p.getPrecioBase());
-				car.setCantidad(cantidad);
-				car.setSubtotal(cantidad*p.getPrecioBase());
-				listaCarrito.add(car);
-				request.setAttribute("contador", listaCarrito.size());
-			    request.getRequestDispatcher("main.jsp").forward(request, response);
-			    break;
-			case "Carrito":
-				double totalPagar=0.0;
-				request.setAttribute("carrito", listaCarrito);
-				for (int i=0; i<listaCarrito.size();i++) {
-					totalPagar=totalPagar+listaCarrito.get(i).getSubtotal();
-				}
-				request.setAttribute("totalPagar", totalPagar);
-				request.getRequestDispatcher("carrito.jsp").forward(request, response);
-				break;
-			default:
-				request.getRequestDispatcher("/main.jsp").forward(request, response);	
-				request.setAttribute("productos", productos);
-			break;
-				
-		}
-    }
-   
     Producto p = new Producto();
     LogProducto logp = new LogProducto();
     int cantidad=1, item;
@@ -76,20 +38,100 @@ public class ServletCarrito extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int codp = Integer.parseInt(request.getParameter("codProducto"));
+		String action = request.getParameter("action");
+		switch (action) {
+		case "Agregar Producto":
+			int codp = Integer.parseInt(request.getParameter("codProducto"));
+			int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+			p = logp.getOne(codp);
+			int stock = p.getStock();
+			if (stock > 0) {
+				Carrito car = new Carrito();
+				item = item + 1;
+				car.setItem(item);
+				car.setCodProducto(p.getCodProd());
+				car.setNombre(p.getNombre());
+				car.setDescripcion(p.getDescripcion());
+				car.setPrecio(p.getPrecioBase());
+				car.setCantidad(cantidad);
+				car.setSubtotal(cantidad*p.getPrecioBase());
+				listaCarrito.add(car);
+				p.setStock(stock - cantidad);
+			} else {
+				request.getRequestDispatcher("mainCliente.jsp").forward(request, response);
+			}
+			HttpSession session = request.getSession();
+			session.setAttribute("listaCarrito", listaCarrito);
+			logp.update(p);
+			LinkedList<Producto> productos = logp.getAll();
+			request.setAttribute("listaProductos", productos);
+		    request.getRequestDispatcher("mainCliente.jsp").forward(request, response);
+		    break;
+		    case "Eliminar":
+		    	            int item = Integer.parseInt(request.getParameter("item"));
+							for (int i = 0; i < listaCarrito.size(); i++) {
+								if (listaCarrito.get(i).getItem() == item) {
+									listaCarrito.remove(i);
+								}
+							}
+							double totalPagar = 0.0;
+							for (int i = 0; i < listaCarrito.size(); i++) {
+								totalPagar = totalPagar + listaCarrito.get(i).getSubtotal();
+							}
+							HttpSession session1 = request.getSession();
+							session1.setAttribute("totalPagar", totalPagar);
+							request.setAttribute("carrito", listaCarrito);
+							request.getRequestDispatcher("carrito.jsp").forward(request, response);
+			break;
+		}
+    }
+}
+		
+		/* int codp = Integer.parseInt(request.getParameter("codProducto")); 
+		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		p = logp.getOne(codp);
-		item = item + 1;
-		Carrito car = new Carrito();
-		car.setItem(item);
-		car.setCodProducto(p.getCodProd());
-		car.setNombre(p.getNombre());
-		car.setDescripcion(p.getDescripcion());
-		car.setPrecio(p.getPrecioBase());
-		car.setCantidad(cantidad);
-		car.setSubtotal(cantidad*p.getPrecioBase());
-		listaCarrito.add(car);
+		int stock = p.getStock();
+		if (stock > 0) {
+			Carrito car = new Carrito();
+			item = item + 1;
+			car.setItem(item);
+			car.setCodProducto(p.getCodProd());
+			car.setNombre(p.getNombre());
+			car.setDescripcion(p.getDescripcion());
+			car.setPrecio(p.getPrecioBase());
+			car.setCantidad(cantidad);
+			car.setSubtotal(cantidad*p.getPrecioBase());
+			listaCarrito.add(car);
+			p.setStock(stock - cantidad);
+		} else {
+			request.getRequestDispatcher("mainCliente.jsp").forward(request, response);
+		}
+		HttpSession session = request.getSession();
+		session.setAttribute("listaCarrito", listaCarrito);
+		logp.update(p);
 		LinkedList<Producto> productos = logp.getAll();
 		request.setAttribute("listaProductos", productos);
 	    request.getRequestDispatcher("mainCliente.jsp").forward(request, response);
 	}
-}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String action = request.getParameter("action");
+		switch (action) {
+		case "eliminar":
+			int idp = Integer.parseInt(request.getParameter("id"));
+			for (int i = 0; i < listaCarrito.size(); i++) {
+				if (listaCarrito.get(i).getItem() == idp) {
+					listaCarrito.remove(i);
+				}
+			}
+			break;
+		}
+		double totalPagar = 0.0;
+		for (int i = 0; i < listaCarrito.size(); i++) {
+			totalPagar = totalPagar + listaCarrito.get(i).getSubtotal();
+		}
+		request.setAttribute("totalPagar", totalPagar);
+		request.setAttribute("carrito", listaCarrito);
+		request.getRequestDispatcher("carrito.jsp").forward(request, response);
+	}*/
