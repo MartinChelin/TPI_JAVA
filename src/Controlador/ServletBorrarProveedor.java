@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.ProveedorData;
+import Data.DataProveedor;
 
 @WebServlet("/ServletBorrarProveedor")
 public class ServletBorrarProveedor extends HttpServlet {
@@ -25,7 +25,7 @@ public class ServletBorrarProveedor extends HttpServlet {
 		
 		String dniProveedor = request.getParameter("dniProveedor");
 		
-		ProveedorData.deleteProveedor(dniProveedor);
+		DataProveedor.deleteProveedor(dniProveedor);
 		
 		request.getRequestDispatcher("/mainAdmin.jsp").forward(request, response);
 		

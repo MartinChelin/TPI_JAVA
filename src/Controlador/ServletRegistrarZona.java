@@ -1,5 +1,5 @@
 package Controlador;
-import Logicas.ZonaLogic;
+import Logicas.LogicZona;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +19,11 @@ public class ServletRegistrarZona extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ZonaLogic newZona = new ZonaLogic(); 
+		LogicZona newZona = new LogicZona(); 
         int codZona = Integer.valueOf(request.getParameter("codZona"));
         String descripcion = request.getParameter("descripcion");
         
         newZona.addNewZona(codZona, descripcion);
-        request.getRequestDispatcher("controlZona.jsp").forward(request, response);
+        request.getRequestDispatcher("administrarZonas.jsp").forward(request, response);
 	}
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Entidades.Producto;
-import Logicas.LogProducto;
+import Logicas.LogicProducto;
 
 /**
  * Servlet implementation class ServletBuscar
@@ -37,7 +37,7 @@ public class ServletBuscar extends HttpServlet {
 			String busqueda = request.getParameter("busqueda");
 			String ordenar = request.getParameter("ordenar");
 			String cat = request.getParameter("categoria");
-			LogProducto proLogic = new LogProducto();
+			LogicProducto proLogic = new LogicProducto();
 			LinkedList<Producto> productosBuscados = proLogic.getProdByNom(busqueda, cat,ordenar);
 			request.setAttribute("listaProductos", productosBuscados);
 			request.getRequestDispatcher("mainCliente.jsp").forward(request, response);

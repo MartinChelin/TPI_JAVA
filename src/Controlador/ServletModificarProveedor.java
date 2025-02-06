@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.ProveedorData;
+import Data.DataProveedor;
 import Entidades.Proveedor;
 
 @WebServlet("/ServletModificarProveedor")
@@ -27,17 +27,17 @@ public class ServletModificarProveedor extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int dni = Integer.valueOf(request.getParameter("dniProveedor"));
-		Proveedor prov = ProveedorData.searchByDni(dni);
+		Proveedor prov = DataProveedor.searchByDni(dni);
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String tel = request.getParameter("telefono");
 		String direccion = request.getParameter("direccion");
 		String mail = request.getParameter("mail");
 		
-		ProveedorData.updateProveedor(prov.getDni(), nombre, apellido, tel, direccion, mail);
-		LinkedList<Proveedor> listaProveedores = ProveedorData.getAll();
+		DataProveedor.updateProveedor(prov.getDni(), nombre, apellido, tel, direccion, mail);
+		LinkedList<Proveedor> listaProveedores = DataProveedor.getAll();
 		request.setAttribute("listaProveedores", listaProveedores);
-		request.getRequestDispatcher("/controlProveedores.jsp").forward(request, response);
+		request.getRequestDispatcher("/administrarProveedores.jsp").forward(request, response);
 	}
 
 }

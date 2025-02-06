@@ -25,7 +25,7 @@
 		  	<br>
 		  	<div>
 		  		<label class="form-label">¿No tienen una cuenta?</label>
-		  		<button type="button" class="btn btn-link" onclick="window.location.href='registrar.jsp'">Registrate</button>
+		  		<button type="button" class="btn btn-link" onclick="window.location.href='registrarUsuario.jsp'">Registrate</button>
 		  	</div>
 		  	<br>
 		  	<button type="login" class="btn btn-primary">Acceder</button>

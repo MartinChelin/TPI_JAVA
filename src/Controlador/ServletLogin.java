@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Logicas.ClienteLogic;
-import Logicas.LogProducto;
+import Logicas.LogicCliente;
+import Logicas.LogicProducto;
 import Entidades.Cliente;
 import Entidades.Producto;
 
@@ -22,8 +22,8 @@ public class ServletLogin extends HttpServlet {
 		String uname = request.getParameter("uname");
 		String pass = request.getParameter("pass");
 		
-		ClienteLogic cliLogic = new ClienteLogic();
-		LogProducto proLogic = new LogProducto();
+		LogicCliente cliLogic = new LogicCliente();
+		LogicProducto proLogic = new LogicProducto();
 		LinkedList<Producto> productos = proLogic.getAll();
 		Cliente user = cliLogic.verifyExist(uname);
 		

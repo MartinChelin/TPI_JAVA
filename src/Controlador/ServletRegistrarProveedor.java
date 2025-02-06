@@ -1,5 +1,5 @@
 package Controlador;
-import Logicas.ProveedorLogic;
+import Logicas.LogicProveedor;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +19,7 @@ public class ServletRegistrarProveedor extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProveedorLogic newProveedor = new ProveedorLogic(); 
+		LogicProveedor newProveedor = new LogicProveedor(); 
         int dni = Integer.valueOf(request.getParameter("dni"));
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");

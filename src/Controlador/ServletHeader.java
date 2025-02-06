@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import Entidades.Carrito;
 import Entidades.Cliente;
 import Entidades.Producto;
-import Logicas.ClienteLogic;
-import Logicas.LogProducto;
+import Logicas.LogicCliente;
+import Logicas.LogicProducto;
 
 /**
  * Servlet implementation class ServletHeader
@@ -38,9 +38,9 @@ public class ServletHeader extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		String uname = (String) request.getSession().getAttribute("username");
-		ClienteLogic cliLogic = new ClienteLogic();
+		LogicCliente cliLogic = new LogicCliente();
 		Cliente elCliente = cliLogic.getClienteByUser(uname);
-		LogProducto proLogic = new LogProducto();
+		LogicProducto proLogic = new LogicProducto();
 		LinkedList<Producto> productos = proLogic.getAll();
 		switch (action) {
 		case "logout":

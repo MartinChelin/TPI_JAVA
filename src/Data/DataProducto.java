@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 
 import Entidades.Producto;
-import Logicas.LogCategoria;
+import Logicas.LogicCategoria;
 
 public class DataProducto {
 	public LinkedList<Producto> getAll(){
@@ -26,7 +26,7 @@ public class DataProducto {
 					p.setDescripcion(rs.getString("descripcion"));
 					p.setStock(rs.getInt("stock"));
 					p.setPrecioBase(rs.getDouble("precioBase"));
-					LogCategoria control = new LogCategoria();
+					LogicCategoria control = new LogicCategoria();
 					p.setCat(control.getOne(rs.getInt("codCategoria")));
 					prods.add(p);
 					}
@@ -123,7 +123,7 @@ public class DataProducto {
 					p.setDescripcion(rs.getString("descripcion"));
 					p.setStock(rs.getInt("stock"));
 					p.setPrecioBase(rs.getDouble("precioBase"));
-					LogCategoria control = new LogCategoria();
+					LogicCategoria control = new LogicCategoria();
 					p.setCat(control.getOne(rs.getInt("codCategoria")));
 					}
 			} catch (SQLException e) {
@@ -178,7 +178,7 @@ public class DataProducto {
 					p.setDescripcion(rs.getString("descripcion"));
 					p.setStock(rs.getInt("stock"));
 					p.setPrecioBase(rs.getDouble("precioBase"));
-					LogCategoria control = new LogCategoria();
+					LogicCategoria control = new LogicCategoria();
 					p.setCat(control.getOne(rs.getInt("codCategoria")));
 					prods.add(p);
 				}

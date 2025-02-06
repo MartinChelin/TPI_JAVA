@@ -147,13 +147,13 @@
 	</header>
     <div>
         <ul class="button-list">
-            <li><form action="ServletSetClientesEnReq" method="get"><button>Clientes</button></form></li>
-            <li><form action="ProductoLista" method="get"><button>Productos</button></form></li>
-            <li><form action="ServletSetCategoriaEnReq" method="get"><button>Categoria</button></form></li>
-            <li><form action="ServletSetProveedorEnReq" method="get"><button>Proveedores</button></form></li>
+            <li><form action="ServletAdministrarCliente" method="get"><button>Clientes</button></form></li>
+            <li><form action="ServletAdministrarProducto" method="get"><button>Productos</button></form></li>
+            <li><form action="ServletAdministrarCategoria" method="get"><button>Categoria</button></form></li>
+            <li><form action="ServletAdministrarProveedor" method="get"><button>Proveedores</button></form></li>
             <li><button>Historial de valores</button></li>
             <li><button>Repartidores</button></li>
-            <li><form action="ServletSetZonaEnReq" method="get"><button>Zonas</button></form></li>
+            <li><form action="ServletAdministrarZona" method="get"><button>Zonas</button></form></li>
             <li><button>Reclamos</button></li>
         </ul>
     </div>

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.ClienteData;
+import Data.DataCliente;
 
 @WebServlet("/ServletBorrarCliente")
 public class ServletBorrarCliente extends HttpServlet {
@@ -25,7 +25,7 @@ public class ServletBorrarCliente extends HttpServlet {
 		
 		String dniCliente = request.getParameter("dniCliente");
 		
-		ClienteData.deleteCliente(dniCliente);
+		DataCliente.deleteCliente(dniCliente);
 		
 		request.getRequestDispatcher("/mainAdmin.jsp").forward(request, response);
 		

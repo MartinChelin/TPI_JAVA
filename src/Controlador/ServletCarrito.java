@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import Entidades.Carrito;
 import Entidades.Producto;
-import Logicas.LogProducto;
+import Logicas.LogicProducto;
 
 /**
  * Servlet implementation class ServletCarrito
@@ -22,7 +22,7 @@ public class ServletCarrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     /*CARRITO*/
     Producto p = new Producto();
-    LogProducto logp = new LogProducto();
+    LogicProducto logp = new LogicProducto();
     int cantidad=1, item;
     double subtotal=0.0;
     LinkedList<Carrito> listaCarrito = new LinkedList<>();

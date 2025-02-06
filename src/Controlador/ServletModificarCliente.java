@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Data.ClienteData;
+import Data.DataCliente;
 import Entidades.Cliente;
 
 @WebServlet("/ServletModificarCliente")
@@ -25,10 +25,10 @@ public class ServletModificarCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String usuarioCliente = request.getParameter("usuarioCliente");
-		Cliente cli = ClienteData.searchByUsername(usuarioCliente);
+		Cliente cli = DataCliente.searchByUsername(usuarioCliente);
 		int rolDeseado = (cli.getEsAdmin() == 0) ? 1 : 0;
 		
-		ClienteData.updateRolCliente(cli.getDniCliente(), rolDeseado);
+		DataCliente.updateRolCliente(cli.getDniCliente(), rolDeseado);
 		
 		request.getRequestDispatcher("/mainAdmin.jsp").forward(request, response);
 	}

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Logicas.LogCategoria;
+import Logicas.LogicCategoria;
 import Entidades.Categoria;
 
 
@@ -26,7 +26,7 @@ public class ServletRegistrarCategoria extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogCategoria newCategoria = new LogCategoria(); 
+		LogicCategoria newCategoria = new LogicCategoria(); 
         int codCategoria = Integer.valueOf(request.getParameter("codCategoria"));
         String descripcion = request.getParameter("descripcion");
         
