@@ -30,6 +30,17 @@
 		  	<br>
 		  	<button type="login" class="btn btn-primary">Acceder</button>
 		</form>
+		
+		<!-- Mostrar el mensaje de error si existe -->
+        <%
+            String errorMessage = (String) request.getAttribute("errorMessage");
+            if (errorMessage != null) {
+        %>
+            <div class="alert alert-danger mt-3" role="alert">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+		
     	</div>
     		<div class = "col-4">
     			<img alt="" class="img-thumbnail" src="https://img.freepik.com/free-vector/computer-login-concept-illustration_114360-7962.jpg?w=740&t=st=1696285249~exp=1696285849~hmac=27292e158e7aea1b3d8a05b1b76ac0c30832bd67a93eaad406f09aef202df676">
