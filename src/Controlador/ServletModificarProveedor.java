@@ -26,7 +26,7 @@ public class ServletModificarProveedor extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int dni = Integer.valueOf(request.getParameter("dniProveedor"));
+		String dni = request.getParameter("dniProveedor");
 		Proveedor prov = DataProveedor.searchByDni(dni);
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");

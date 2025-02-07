@@ -20,7 +20,7 @@
         <br>
         <br>
         <%
-        	int dniProveedor = Integer.valueOf(request.getParameter("dniProveedor"));
+        	String dniProveedor = request.getParameter("dniProveedor");
         %>
         <input name="dniProveedor" class="form-control" value="<%=dniProveedor%>" type="hidden" required><br>
         

@@ -1,5 +1,6 @@
 package Data;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 import Entidades.*;
@@ -14,7 +15,7 @@ public class DataProveedor {
 							"insert into proveedor(dniProveedor, nombre, apellido, tel, direccion, mail) values(?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
-			stmt.setInt(1, pro.getDni());
+			stmt.setString(1, pro.getDni());
 			stmt.setString(2, pro.getNombre());
 			stmt.setString(3, pro.getApellido());
 			stmt.setString(4, pro.getTelefono());
@@ -25,7 +26,7 @@ public class DataProveedor {
 			
 			keyResultSet=stmt.getGeneratedKeys();
             if(keyResultSet!=null && keyResultSet.next()){
-                pro.setDni(keyResultSet.getInt(1));
+                pro.setDni(keyResultSet.getString(1));
             }
 			
 		}  catch (SQLException e) {
@@ -52,7 +53,7 @@ public class DataProveedor {
 			if (rs!=null) {
 				while (rs.next()) {
 					Proveedor p = new Proveedor();
-					p.setDni(rs.getInt("dniProveedor"));
+					p.setDni(rs.getString("dniProveedor"));
 					p.setNombre(rs.getString("nombre"));
 					p.setApellido(rs.getString("apellido"));
 					p.setMail(rs.getString("mail"));
@@ -92,7 +93,7 @@ public class DataProveedor {
 			}
 		}
 	}
-	public static void updateProveedor(int dniProveedor, String nombre, String apellido,String tel, String direccion, String mail) {
+	public static void updateProveedor(String dniProveedor, String nombre, String apellido,String tel, String direccion, String mail) {
 		PreparedStatement pstmt=null;
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update proveedor set nombre=?, apellido=?, tel=?, direccion=?, mail=? where dniProveedor=?");
@@ -101,7 +102,7 @@ public class DataProveedor {
 			pstmt.setString(3,tel);
 			pstmt.setString(4,direccion);
 			pstmt.setString(5,mail);
-			pstmt.setInt(6,dniProveedor);
+			pstmt.setString(6,dniProveedor);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,11 +117,11 @@ public class DataProveedor {
 	}
 	
 	
-	public static void updateDniProveedor(int dniProveedor) {
+	public static void updateDniProveedor(String dniProveedor) {
 		PreparedStatement pstmt=null;
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("update Proveedor set dniProveedor=? where dniProveedor=?");
-			pstmt.setInt(1,dniProveedor);
+			pstmt.setString(1,dniProveedor);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -134,25 +135,26 @@ public class DataProveedor {
 		}
 	}
 
-	public static Proveedor searchByDni(int dniProveedor){
+	public static Proveedor searchByDni(String dniProveedor){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		Proveedor prov = new Proveedor(0, "", "", "", "", "");
+		Proveedor prov = null;
+		//Proveedor prov = new Proveedor(0, "", "", "", "", "");
 	
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from proveedor where dniProveedor=?");
-			pstmt.setInt(1, dniProveedor);
+			pstmt.setString(1, dniProveedor);
 			rs = pstmt.executeQuery();
 	
             if(rs!=null && rs.next()) {
-            	prov.setDni(rs.getInt(("dniProveedor")));
-            	prov.setNombre(rs.getString(("nombre")));
-            	prov.setApellido(rs.getString(("apellido")));
-            	prov.setMail(rs.getString(("mail")));
-            	prov.setTelefono(rs.getString(("Telefono")));
-            	prov.setDireccion(rs.getString(("Direccion")));
-
+            	prov = new Proveedor(
+    	                rs.getString("dniProveedor"),
+    	                rs.getString("nombre"),
+    	                rs.getString("apellido"),
+    	                rs.getString("mail"),
+    	                rs.getString("Telefono"),
+    	                rs.getString("Direccion")
+    	         );
             }
         
 		} catch (SQLException e) {

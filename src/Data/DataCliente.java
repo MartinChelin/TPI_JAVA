@@ -23,9 +23,9 @@ public class DataCliente {
 			rs = pstmt.executeQuery();
 	
 			if (rs != null && rs.next()) { // Si encuentra el usuario
-	            String dateFormat = "dd/MM/yyyy";
-	            DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
-	            LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
+	            //String dateFormat = "dd/MM/yyyy";
+	            //DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
+	            //LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
 
 	            cli = new Cliente(
 	                rs.getString("dniCliente"),
@@ -57,12 +57,9 @@ public class DataCliente {
 	public static Cliente searchByDni(String dniCliente){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		Cliente cli = null;
 		
-		String dateFormat = "dd/MM/yyyy";
-		DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
-		LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
-		
-		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
+		//Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
 	
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from cliente where usuario=?");
@@ -70,15 +67,20 @@ public class DataCliente {
 			rs = pstmt.executeQuery();
 	
             if(rs!=null && rs.next()) {
-            	cli.setDniCliente(rs.getString(("dniCliente")));
-            	cli.setNombre(rs.getString(("nombre")));
-            	cli.setApellido(rs.getString(("apellido")));
-            	cli.setMail(rs.getString(("mail")));
-            	cli.setFechaNac(rs.getObject("fechaNac", LocalDate.class));
-            	cli.setUsuario(rs.getString(("usuario")));
-            	cli.setContraseña(rs.getString(("contraseña")));
-            	cli.setNroTarjeta(rs.getInt(("nro_tarjeta")));
-            	cli.setEsAdmin(rs.getInt(("esAdmin")));
+            	//String dateFormat = "dd/MM/yyyy";
+        		//DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
+        		//LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
+            	cli = new Cliente(
+    	                rs.getString("dniCliente"),
+    	                rs.getString("nombre"),
+    	                rs.getString("apellido"),
+    	                rs.getString("mail"),
+    	                rs.getObject("fechaNac", LocalDate.class),
+    	                rs.getString("usuario"),
+    	                rs.getString("contraseña"),
+    	                rs.getInt("nro_tarjeta"),
+    	                rs.getInt("esAdmin")
+    	         );
             }
         
 		} catch (SQLException e) {
@@ -98,12 +100,9 @@ public class DataCliente {
 	public Cliente searchByEmail(String email){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		Cliente cli = null;
 		
-		String dateFormat = "dd/MM/yyyy";
-		DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
-		LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
-		
-		Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
+		//Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
 	
 		try {
 			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from cliente where usuario=?");
@@ -111,15 +110,20 @@ public class DataCliente {
 			rs = pstmt.executeQuery();
 	
             if(rs!=null && rs.next()) {
-            	cli.setDniCliente(rs.getString(("dniCliente")));
-            	cli.setNombre(rs.getString(("nombre")));
-            	cli.setApellido(rs.getString(("apellido")));
-            	cli.setMail(rs.getString(("mail")));
-            	cli.setFechaNac(rs.getObject("fechaNac", LocalDate.class));
-            	cli.setUsuario(rs.getString(("usuario")));
-            	cli.setContraseña(rs.getString(("contraseña")));
-            	cli.setNroTarjeta(rs.getInt(("nro_tarjeta")));
-            	cli.setEsAdmin(rs.getInt(("esAdmin")));
+            	//String dateFormat = "dd/MM/yyyy";
+        		//DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
+        		//LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
+            	cli = new Cliente(
+    	                rs.getString("dniCliente"),
+    	                rs.getString("nombre"),
+    	                rs.getString("apellido"),
+    	                rs.getString("mail"),
+    	                rs.getObject("fechaNac", LocalDate.class),
+    	                rs.getString("usuario"),
+    	                rs.getString("contraseña"),
+    	                rs.getInt("nro_tarjeta"),
+    	                rs.getInt("esAdmin")
+    	         );
             }
         
 		} catch (SQLException e) {

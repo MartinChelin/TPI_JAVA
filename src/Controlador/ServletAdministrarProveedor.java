@@ -31,7 +31,7 @@ public class ServletAdministrarProveedor extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int dniProveedor = Integer.valueOf(request.getParameter("dniProveedor"));
+		String dniProveedor = request.getParameter("dniProveedor");
 		request.setAttribute("dniProveedor", dniProveedor);
 		request.getRequestDispatcher("/modificarProveedor.jsp").forward(request, response);
 		doGet(request, response);

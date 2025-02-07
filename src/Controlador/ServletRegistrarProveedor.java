@@ -20,7 +20,7 @@ public class ServletRegistrarProveedor extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LogicProveedor newProveedor = new LogicProveedor(); 
-        int dni = Integer.valueOf(request.getParameter("dni"));
+        String dni = request.getParameter("dni");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String mail = request.getParameter("mail");
