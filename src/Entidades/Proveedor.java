@@ -21,9 +21,6 @@ public class Proveedor {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String getDni() {
-		return dniProveedor;
-	}
 	public void setDni(String dniProveedor) {
 		this.dniProveedor = dniProveedor;
 	}
@@ -56,6 +53,9 @@ public class Proveedor {
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	public String getDni() {
+		return dniProveedor;
 	}
 	
 	
