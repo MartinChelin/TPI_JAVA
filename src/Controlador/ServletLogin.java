@@ -38,7 +38,7 @@ public class ServletLogin extends HttpServlet {
 			}
 			
 			boolean verificacion = cliLogic.verifyPass(user, pass);
-			System.out.println("Verificación de contraseña: " + verificacion);
+			//System.out.println("Verificación de contraseña: " + verificacion);
 			if (!verificacion) {
 				String errorMessage = "Contraseña incorrecta.";
                 request.setAttribute("errorMessage", errorMessage);

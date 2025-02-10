@@ -152,8 +152,8 @@ public class DataProveedor {
     	                rs.getString("nombre"),
     	                rs.getString("apellido"),
     	                rs.getString("mail"),
-    	                rs.getString("Telefono"),
-    	                rs.getString("Direccion")
+    	                rs.getString("telefono"),
+    	                rs.getString("direccion")
     	         );
             }
         
