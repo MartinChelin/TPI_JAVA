@@ -168,7 +168,7 @@
                 <td><%= cliente.getEsAdmin() %></td>
                 <td>
     				<form action="ServletModificarCliente" method="post">
-        				<button name="usuarioCliente" value="<%= cliente.getUsuario()%>">Cambiar Rol</button>
+        				<button name="dniCliente" value="<%= cliente.getDniCliente()%>">Cambiar Rol</button>
     				</form>
 				</td>
                 <td>

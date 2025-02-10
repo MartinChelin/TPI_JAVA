@@ -24,8 +24,9 @@ public class ServletModificarCliente extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String usuarioCliente = request.getParameter("usuarioCliente");
-		Cliente cli = DataCliente.searchByUsername(usuarioCliente);
+		String dniCliente = request.getParameter("dniCliente");
+		Cliente cli = DataCliente.searchByDni(dniCliente);
+
 		int rolDeseado = (cli.getEsAdmin() == 0) ? 1 : 0;
 		
 		DataCliente.updateRolCliente(cli.getDniCliente(), rolDeseado);

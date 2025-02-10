@@ -22,7 +22,8 @@ public class DataCliente {
 			pstmt.setString(1, username);
 			rs = pstmt.executeQuery();
 	
-			if (rs != null && rs.next()) { // Si encuentra el usuario
+			if (rs != null && rs.next()) {
+				// Si encuentra el usuario
 	            //String dateFormat = "dd/MM/yyyy";
 	            //DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
 	            //LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
@@ -59,29 +60,32 @@ public class DataCliente {
 		ResultSet rs = null;
 		Cliente cli = null;
 		
+		//CAMBIE PARA QUE SE INICIE EN NULL ASI SOLUCIONO ERROR DE MENSAJE DE USUARIO INCORRECTO
 		//Cliente cli = new Cliente("", "", "", "", fechaDefault, "", "", 0, 0);
 	
 		try {
-			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from cliente where usuario=?");
+			pstmt = DbHandler.getInstancia().getConn().prepareStatement("select * from cliente where dniCliente=?");
 			pstmt.setString(1, dniCliente);
 			rs = pstmt.executeQuery();
 	
-            if(rs!=null && rs.next()) {
-            	//String dateFormat = "dd/MM/yyyy";
-        		//DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
-        		//LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
-            	cli = new Cliente(
-    	                rs.getString("dniCliente"),
-    	                rs.getString("nombre"),
-    	                rs.getString("apellido"),
-    	                rs.getString("mail"),
-    	                rs.getObject("fechaNac", LocalDate.class),
-    	                rs.getString("usuario"),
-    	                rs.getString("contraseña"),
-    	                rs.getInt("nro_tarjeta"),
-    	                rs.getInt("esAdmin")
-    	         );
-            }
+			if (rs != null && rs.next()) {
+				// Si encuentra el usuario
+	            //String dateFormat = "dd/MM/yyyy";
+	            //DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
+	            //LocalDate fechaDefault = LocalDate.parse("01/01/1000", dFormat);
+
+	            cli = new Cliente(
+	                rs.getString("dniCliente"),
+	                rs.getString("nombre"),
+	                rs.getString("apellido"),
+	                rs.getString("mail"),
+	                rs.getObject("fechaNac", LocalDate.class),
+	                rs.getString("usuario"),
+	                rs.getString("contraseña"),
+	                rs.getInt("nro_tarjeta"),
+	                rs.getInt("esAdmin")
+	            );
+	        }
         
 		} catch (SQLException e) {
 			e.printStackTrace();
