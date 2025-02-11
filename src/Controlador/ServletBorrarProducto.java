@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Entidades.Producto;
+import Entidades.Categoria;
 import Logicas.*;
 
 /**
@@ -41,10 +42,14 @@ public class ServletBorrarProducto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		LogicProducto control = new LogicProducto();
+		LogicCategoria controlCategoria= new LogicCategoria();
+		
 		int idProd = Integer.parseInt(request.getParameter("CodProd"));
 		control.delete(idProd);
 		LinkedList<Producto> productos =  control.getAll();
+		LinkedList<Categoria> categorias =  controlCategoria.getAll();
 		request.setAttribute("listaProductos", productos);
+		request.setAttribute("listaCategorias", categorias);
 		request.getRequestDispatcher("administrarProductos.jsp").forward(request, response);
 		response.getWriter().append("Eliminado");
 	}

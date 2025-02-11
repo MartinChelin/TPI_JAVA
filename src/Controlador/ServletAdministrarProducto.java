@@ -34,9 +34,14 @@ public class ServletAdministrarProducto extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		LogicProducto lp = new LogicProducto();
+		LogicCategoria lc = new LogicCategoria();
 		
 		LinkedList<Producto> productos =  lp.getAll();
+		LinkedList<Categoria> categorias =  lc.getAll();
+		
 		request.setAttribute("listaProductos", productos);
+		request.setAttribute("listaCategorias", categorias);
+		
 		request.getRequestDispatcher("administrarProductos.jsp").forward(request, response);
 	}
 
@@ -52,8 +57,11 @@ public class ServletAdministrarProducto extends HttpServlet {
 		String desc = request.getParameter("descripcion");
 		int s = Integer.parseInt(request.getParameter("stock"));
 		double precio = Double.parseDouble(request.getParameter("precioBase"));
+		
+		int codCat = Integer.parseInt(request.getParameter("codCat"));
 		LogicCategoria lc = new LogicCategoria();
-		Categoria c = lc.getOne(Integer.parseInt(request.getParameter("codCat")));
+		Categoria c = lc.getOne(codCat);
+		
 		nuevaproducto.setCodProd(codigo);
 		nuevaproducto.setNombre(nom);
 		nuevaproducto.setDescripcion(desc);
@@ -62,7 +70,9 @@ public class ServletAdministrarProducto extends HttpServlet {
 		nuevaproducto.setCat(c);
 		lp.add(nuevaproducto);
 		LinkedList<Producto> productos =  lp.getAll();
+		LinkedList<Categoria> categorias=  lc.getAll();		
 		request.setAttribute("listaProductos", productos);
+		request.setAttribute("listaCategorias", categorias);
 		request.getRequestDispatcher("administrarProductos.jsp").forward(request, response);
 	}
 

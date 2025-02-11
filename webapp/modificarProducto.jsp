@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="Entidades.Producto" %>
+    <%@ page import="Entidades.Categoria" %>
+    <%@ page import="java.util.LinkedList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,9 @@
 <%
 Producto pe = (Producto)request.getAttribute("prodedit");
 String username = (String)session.getAttribute("username");
+%>
+<% 
+LinkedList<Categoria> lc = (LinkedList<Categoria>)request.getAttribute("listaCategorias");
 %>
 <title>Editar Producto:</title>
 </head>
@@ -257,7 +262,15 @@ String username = (String)session.getAttribute("username");
 	<input type="text" name="descripcion" placeholder="Ingrese descripcion del producto">
 	<input type="text" name="stock" placeholder="Ingrese stock del producto">
 	<input type="text" name="precioBase" placeholder="Ingrese precio del producto">
-	<input type="text" name="codCat" placeholder="Ingrese id de la categoria del producto">
+	<select id="opciones" name="codCat">
+    	<option>Elegir Categoria</option>
+    	<% for (Categoria cat : lc) { %>
+        <option value="<%=cat.getCodCat()%>"> <%= cat.getDescripcion() %></option>
+    	<%}%>
+	</select>
+	
+	
+	
 	<input type="submit" value="Confirmar cambios">
 	</form>
 </div>

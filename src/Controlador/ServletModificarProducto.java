@@ -38,6 +38,9 @@ public class ServletModificarProducto extends HttpServlet {
 		int codigo = Integer.parseInt(request.getParameter("CodProd"));
 		prodedit = control.getOne(codigo);
 		request.setAttribute("prodedit", prodedit);
+		LogicCategoria lc = new LogicCategoria();
+		LinkedList<Categoria> categorias =  lc.getAll();
+		request.setAttribute("listaCategorias", categorias);
 		request.getRequestDispatcher("modificarProducto.jsp").forward(request, response);
 	}
 
@@ -62,6 +65,11 @@ public class ServletModificarProducto extends HttpServlet {
 		prod.setCat(cate);
 		LogicProducto controlp = new LogicProducto();
 		controlp.update(prod);
+		
+		LogicCategoria controlCategoria= new LogicCategoria();
+		LinkedList<Categoria> categorias =  controlCategoria.getAll();
+		request.setAttribute("listaCategorias", categorias);
+		
 		LinkedList<Producto> productos =  controlp.getAll();
 		request.setAttribute("listaProductos", productos);
 		request.getRequestDispatcher("administrarProductos.jsp").forward(request, response);

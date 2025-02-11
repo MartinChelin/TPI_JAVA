@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.LinkedList" %>
     <%@ page import="Entidades.Producto" %>
+    <%@ page import="Entidades.Categoria" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,11 @@
 <%		  	
 LinkedList<Producto> lp = (LinkedList<Producto>)request.getAttribute("listaProductos");
 %>
+<% 
+LinkedList<Categoria> lc = (LinkedList<Categoria>)request.getAttribute("listaCategorias");
+%>
+
+
 <%
     	if(session.getAttribute("username")==null){
     		response.sendRedirect("login.jsp");
@@ -242,8 +248,13 @@ LinkedList<Producto> lp = (LinkedList<Producto>)request.getAttribute("listaProdu
 		<input type="text" class="form-control form-control-sm" name="nombre" placeholder="Nombre del Producto">
 		<input type="text" class="form-control form-control-sm" name="descripcion" placeholder="Descripcion del Producto">
 		<input type="text" class="form-control form-control-sm" name="stock" placeholder="Cantidad del Producto">
-		<input type="text" class="form-control form-control-sm" name="precioBase" placeholder="Precio base del Producto">
-		<input type="text" class="form-control form-control-sm" name="codCat" placeholder="Id de la Categoria">
+		<input type="text" class="form-control form-control-sm" name="precioBase" placeholder="Precio base del Producto">	
+		<select id="opciones" name="codCat">
+    		<option>Elegir Categoria</option>
+    		<% for (Categoria cat : lc) { %>
+        	<option value="<%=cat.getCodCat()%>"> <%= cat.getDescripcion() %></option>
+    		<%}%>
+		</select>
 		<input class="btn btn-success mx-auto d-flex align-items-center" type="submit" value="Agregar Producto">
 		</form>
 	<hr>
