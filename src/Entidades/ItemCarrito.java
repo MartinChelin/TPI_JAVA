@@ -31,4 +31,9 @@ public class ItemCarrito {
 
 	}
 
+	public double calcularSubtotal() {
+		// TODO Auto-generated method stub
+		return producto.getPrecioBase() * cantidad;
+	}
+
 }
