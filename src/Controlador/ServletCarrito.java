@@ -107,9 +107,14 @@ public class ServletCarrito extends HttpServlet {
           request.getRequestDispatcher("mainCliente.jsp").forward(request, response);
           break;
 		case "Eliminar":
+							// Eliminar producto y actualizar lista carrito total a pagar y stock de productos en la base de datos
 		    	            int item = Integer.parseInt(request.getParameter("item"));
 							for (int i = 0; i < listaCarrito.size(); i++) {
 								if (listaCarrito.get(i).getItem() == item) {
+									p = logp.getOne(listaCarrito.get(i).getCodProducto());
+									cantidad = listaCarrito.get(i).getCantidad();
+									p.setStock(p.getStock() + cantidad);
+									logp.update(p);
 									listaCarrito.remove(i);
 								}
 							}
@@ -117,10 +122,6 @@ public class ServletCarrito extends HttpServlet {
 							for (int i = 0; i < listaCarrito.size(); i++) {
 								totalPagar = totalPagar + listaCarrito.get(i).getSubtotal();
 							}
-							// Actualizar stock de productos
-							cantidad = listaCarrito.get(item).getCantidad();
-							p.setStock(p.getStock() + cantidad);
-							logp.update(p);
 							HttpSession session1 = request.getSession();
 							session1.setAttribute("totalPagar", totalPagar);
 							request.setAttribute("carrito", listaCarrito);
