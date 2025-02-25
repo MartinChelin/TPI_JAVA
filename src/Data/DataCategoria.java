@@ -96,7 +96,10 @@ public class DataCategoria {
 			}
 		}
 	}
-		
+	
+	
+	
+	
 	public static Categoria getOne(int id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

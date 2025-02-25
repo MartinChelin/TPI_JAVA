@@ -151,7 +151,7 @@
             <li><form action="ServletAdministrarProducto" method="get"><button>Productos</button></form></li>
             <li><form action="ServletAdministrarCategoria" method="get"><button>Categoria</button></form></li>
             <li><form action="ServletAdministrarProveedor" method="get"><button>Proveedores</button></form></li>
-            <li><form action="ServletMonitorValoresHistoricosProductos" method="get"><button>Historial de valores</button></form></li>
+            <li><button>Historial de valores</button></li>
             <li><button>Repartidores</button></li>
             <li><form action="ServletAdministrarZona" method="get"><button>Zonas</button></form></li>
             <li><button>Reclamos</button></li>
