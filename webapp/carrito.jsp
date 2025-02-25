@@ -335,7 +335,7 @@
 		<br>
 		<br>
 		<div class="boton-comprar">
-		<button onclick="alert('Compra realizada')" class="carrito">Comprar</button>
+		<button onclick="window.location.href='seleccionarPago.jsp'" class="carrito">Comprar</button>
 		</div>
 </main>
 </body>
