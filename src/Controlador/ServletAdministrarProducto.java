@@ -1,6 +1,8 @@
 package Controlador;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 
 import javax.servlet.ServletException;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import Entidades.Categoria;
 import Entidades.Producto;
+import Entidades.ValorHistorico;
 import Logicas.*;
+import Data.*;
 
 /**
  * Servlet implementation class ServletAdministrarProducto
@@ -70,7 +74,17 @@ public class ServletAdministrarProducto extends HttpServlet {
 		nuevaproducto.setCat(c);
 		lp.add(nuevaproducto);
 		LinkedList<Producto> productos =  lp.getAll();
-		LinkedList<Categoria> categorias=  lc.getAll();		
+		LinkedList<Categoria> categorias=  lc.getAll();
+		
+		//Logica para guardar el nuevo Valor Historico
+		ValorHistorico vh = new ValorHistorico();
+		vh.setCodProductoVH(codCat);
+		vh.setValor(precio);
+		LocalDate fechaActual = LocalDate.now();
+		vh.setFechaDesde(fechaActual);
+		DataValorHistorico dvh = new DataValorHistorico();
+		dvh.addVH(vh);
+		
 		request.setAttribute("listaProductos", productos);
 		request.setAttribute("listaCategorias", categorias);
 		request.getRequestDispatcher("administrarProductos.jsp").forward(request, response);
