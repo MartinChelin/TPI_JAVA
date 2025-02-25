@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleccionar Método de Pago</title>
+    <title>Seleccionar Método de Pago</title>
     <style>
         /* Estilos globales */
         body {
@@ -45,9 +45,8 @@
         header nav form {
             display: flex;
         }
-
-
-		header nav a {
+        
+        header nav a {
         	display: flex; /* Added flexbox layout */
         	justify-content: space-between; /* Added alignment */
         	flex-direction: row; /* Added alignment */
@@ -59,11 +58,11 @@
         	font-weight: bold;
         	transition: all 500ms ease;
     	}
-
-    	header nav a:hover {
+        header nav a:hover {
         	background: #3498db;
         	border-radius: 50px;
     	}
+
         .carrito {
             background: #3498db;
             margin-left: 10px;
@@ -119,7 +118,12 @@
         .logout-btn:hover {
             background: #2980b9;
         }
-
+		.search-label {
+    		text-align: center;
+  			float: center;
+    		font-family: Luminari, fantasy; 
+        	margin-top: 20px;
+    	}
         /* Estilos para el contenido */
         main {
             margin-top: 50px;
@@ -140,7 +144,6 @@
         h1 {
             color: #333;
             margin-bottom: 20px;
-            
         }
 
         form {
@@ -213,14 +216,14 @@
 
     <main>
         <div class="form-container">
-            <h1>Seleccionar Método de Pago</h1>
+            <h1>Seleccionar Método de Pago</h1>
             <form action="seleccionarPago.jsp" method="post">
-                <label for="metodoPago">Método de Pago:</label>
+                <label for="metodoPago">Método de Pago:</label>
                 <select id="metodoPago" name="metodoPago" onchange="this.form.submit()">
                     <option value="">Seleccione...</option>
                     <option value="efectivo" <%= "efectivo".equals(request.getParameter("metodoPago")) ? "selected" : "" %>>Efectivo</option>
                     <option value="transferencia" <%= "transferencia".equals(request.getParameter("metodoPago")) ? "selected" : "" %>>Transferencia</option>
-                    <option value="debito" <%= "debito".equals(request.getParameter("metodoPago")) ? "selected" : "" %>>Débito</option>
+                    <option value="debito" <%= "debito".equals(request.getParameter("metodoPago")) ? "selected" : "" %>>Débito</option>
                 </select>
             </form>
 
@@ -232,7 +235,7 @@
                 <div class="payment-info">
                     <h3>Pago en Efectivo</h3>
                     <form action="ServletProcesarPagoEfectivo" method="post">
-                        <p>Se le generará un recibo para pagar en el local.</p>
+                        <p>Se le entregara el correspondiente recibo al momento de efectuar el pago</p>
                         <button type="submit" class="carrito">Confirmar Pago</button>
                     </form>
                 </div>
@@ -251,10 +254,10 @@
                     } else if (metodoPago.equals("debito")) {
             %>
                 <div class="payment-info">
-                    <h3>Pago con Débito</h3>
+                    <h3>Pago con Débito</h3>
                     <form action="ServletProcesarPagoDebito" method="post">
-                        <label for="tarjeta">Número de Tarjeta:</label>
-                        <input type="text" id="tarjeta" name="tarjeta" placeholder="Ingrese el número de tarjeta" pattern="\d{16}" title="El número de tarjeta debe tener exactamente 16 dígitos" required>
+                        <label for="tarjeta">Número de Tarjeta:</label>
+                        <input type="text" id="tarjeta" name="tarjeta" placeholder="Ingrese el número de tarjeta" pattern="\d{16}" title="El número de tarjeta debe tener exactamente 16 dígitos" required>
                         <label for="vencimiento">Fecha de Vencimiento:</label>
                         <%
                         LocalDate today = LocalDate.now();
@@ -262,7 +265,7 @@
                         %>
                         <input type="month" id="vencimiento" name="vencimiento" min="<%= minDate %>" required>
                         <label for="cvv">CVV:</label>
-                        <input type="text" id="cvv" name="cvv" placeholder="Ingrese el CVV" pattern="\d{3,4}" title="El CVV debe tener 3/4 dígitos" required>
+                        <input type="text" id="cvv" name="cvv" placeholder="Ingrese el CVV" pattern="\d{3,4}" title="El CVV debe tener 3/4 dígitos" required>
                         <button type="submit" class="carrito">Confirmar Pago</button>
                     </form>
                 </div>
