@@ -12,7 +12,7 @@ import Entidades.ValorHistorico;
 
 public class DataValorHistorico {
 
-	
+	//adakbjhe
 	public static LinkedList<ValorHistorico> getAll(){
 		LinkedList<ValorHistorico> vhs = new LinkedList<>();
 		Statement stmt = null;
