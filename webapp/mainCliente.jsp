@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@ page import="Entidades.Cliente"%>
 <%@ page import="Entidades.Producto"%>
 <%@ page import="Entidades.Carrito"%>
