@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 import javax.servlet.ServletException;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Data.DataValorHistorico;
 import Entidades.Categoria;
 import Entidades.Producto;
+import Entidades.ValorHistorico;
 import Logicas.*;
 
 /**
@@ -49,7 +52,11 @@ public class ServletModificarProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// Me traigo el producto al cual voy a modificar
 		int cod = Integer.parseInt(request.getParameter("codProd"));
+		LogicProducto controlp = new LogicProducto();
+		Producto productoSeleccionado = controlp.getOne(cod);
+				
 		String nom = request.getParameter("nombre");
 		String desc = request.getParameter("descripcion");
 		int stock = Integer.parseInt(request.getParameter("stock"));
@@ -63,7 +70,6 @@ public class ServletModificarProducto extends HttpServlet {
 		prod.setStock(stock);
 		prod.setPrecioBase(pbase);
 		prod.setCat(cate);
-		LogicProducto controlp = new LogicProducto();
 		controlp.update(prod);
 		
 		LogicCategoria controlCategoria= new LogicCategoria();
@@ -72,6 +78,17 @@ public class ServletModificarProducto extends HttpServlet {
 		
 		LinkedList<Producto> productos =  controlp.getAll();
 		request.setAttribute("listaProductos", productos);
+		
+		if(productoSeleccionado.getPrecioBase() != pbase) {
+			//Logica para guardar el nuevo Valor Historico
+			ValorHistorico vh = new ValorHistorico();
+			vh.setCodProductoVH(prod.getCodProd());
+			vh.setValor(prod.getPrecioBase());
+			LocalDate fechaActual = LocalDate.now();
+			vh.setFechaDesde(fechaActual);
+			DataValorHistorico dvh = new DataValorHistorico();
+			dvh.addVH(vh);			
+		}
 		request.getRequestDispatcher("administrarProductos.jsp").forward(request, response);
 	}
 

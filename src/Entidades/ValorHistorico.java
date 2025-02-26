@@ -5,12 +5,19 @@ import java.time.LocalDate;
 public class ValorHistorico {
 	private int codProductoVH;
 	private String nombreProducto;
+	private String descripcionProducto;
 	private String descripcion;
 	private double valor;
 	private LocalDate fechaDesde;
 	String dateFormat = "dd/MM/yyyy";
 
 	
+	public String getDescripcionProducto() {
+		return descripcionProducto;
+	}
+	public void setDescripcionProducto(String descripcionProducto) {
+		this.descripcionProducto = descripcionProducto;
+	}
 	
 	public String getNombreProducto() {
 		return nombreProducto;

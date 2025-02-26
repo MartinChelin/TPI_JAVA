@@ -78,7 +78,7 @@ public class ServletAdministrarProducto extends HttpServlet {
 		
 		//Logica para guardar el nuevo Valor Historico
 		ValorHistorico vh = new ValorHistorico();
-		vh.setCodProductoVH(codCat);
+		vh.setCodProductoVH(codigo);
 		vh.setValor(precio);
 		LocalDate fechaActual = LocalDate.now();
 		vh.setFechaDesde(fechaActual);

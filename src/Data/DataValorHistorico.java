@@ -20,13 +20,14 @@ public class DataValorHistorico {
 		
 		try {
 			stmt = DbHandler.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("SELECT  vhp.codProductoVH, vhp.valor, p.nombre, vhp.fechaDesde, c.descripcion FROM valor_historico_producto vhp INNER JOIN producto p ON p.codProducto = vhp.codProductoVH INNER JOIN categoria c ON c.codCategoria = p.codCategoria");
+			rs = stmt.executeQuery("SELECT  vhp.codProductoVH, vhp.valor, p.nombre, p.descripcion, vhp.fechaDesde, c.descripcion FROM valor_historico_producto vhp JOIN producto p ON p.codProducto = vhp.codProductoVH INNER JOIN categoria c ON c.codCategoria = p.codCategoria");
 			if (rs!=null) {
 				while (rs.next()) {
 					ValorHistorico vh = new ValorHistorico();
 					vh.setCodProductoVH(rs.getInt("vhp.codProductoVH"));
 					vh.setValor(rs.getDouble("vhp.valor"));
 					vh.setNombreProducto(rs.getString("p.nombre"));
+					vh.setDescripcionProducto(rs.getString("p.descripcion"));
 					vh.setFechaDesde(rs.getObject("vhp.fechaDesde", LocalDate.class));
 					vh.setDescripcion(rs.getString("c.descripcion"));
 					vhs.add(vh);
@@ -56,7 +57,7 @@ public class DataValorHistorico {
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setInt(1, vh.getCodProductoVH());
-			stmt.setObject(2, vh.getFechaDesde());
+			stmt.setDate(2, java.sql.Date.valueOf(vh.getFechaDesde()));
 			stmt.setDouble(3, vh.getValor());
 			stmt.executeUpdate();
 			
@@ -64,6 +65,7 @@ public class DataValorHistorico {
             if(keyResultSet!=null && keyResultSet.next()){
             	vh.setCodProductoVH(keyResultSet.getInt(1));
             	vh.setFechaDesde((LocalDate) keyResultSet.getObject(2));
+            	
             }
 			
 		}  catch (SQLException e) {

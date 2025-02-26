@@ -65,10 +65,11 @@
 
     <table>
         <tr>
-            <th>Código del Producto</th>
-            <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Precio</th>
+            <th>Código Producto</th>
+            <th>Nombre Producto</th>
+            <th>Descripcion Producto</th>
+            <th>Categoria Producto</th>
+            <th>Precio Producto</th>
             <th>Fecha Desde</th>
         </tr>
         <%
@@ -79,6 +80,7 @@
         <tr>
             <td><%= registro.getCodProductoVH() %></td>
             <td><%= registro.getNombreProducto() %></td>
+            <td><%= registro.getDescripcionProducto() %></td>
             <td><%= registro.getDescripcion() %></td>
             <td><%= registro.getValor() %></td>
             <td><%= registro.getFechaDesde() %></td>
