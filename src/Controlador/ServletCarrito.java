@@ -115,6 +115,12 @@ public class ServletCarrito extends HttpServlet {
 									p.setStock(p.getStock() + cantidad);
 									logp.update(p);
 									listaCarrito.remove(i);
+									// Recalcular item
+									int item1 = 0;
+									for (int j = 0; j < listaCarrito.size(); j++) {
+										item1++;
+										listaCarrito.get(j).setItem(item1);
+									}
 								}
 							}
 							double totalPagar = 0.0;
