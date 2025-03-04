@@ -244,11 +244,19 @@
             %>
                 <div class="payment-info">
                     <h3>Pago por Transferencia (Solo para retiros en el local)</h3>
-                    <form action="ServletProcesarPagoTransferencia" method="post">
-                        <p>CVU/CBU: 023021932103910</p>
+                   <form action="ServletProcesarPagoTransferencia" method="post">
+                   		<p>CVU/CBU: 023021932103910</p>
                         <p>Alias: kioskoonline123</p>
-                        <button type="submit" class="carrito">Confirmar Pago</button>
-                    </form>
+    				<label for="metodoEntrega">Método de entrega:</label>
+   	 				<select name="metodoEntrega" id="metodoEntrega">
+        			<option value="local">Retiro en el local</option>
+    				</select>
+    					<button type="submit">Confirmar Pago</button>
+    					<% if (request.getAttribute("errorMensaje") != null) { %>
+        				<p style="color: red;"><%= request.getAttribute("errorMensaje") %></p>
+    					<% } %>
+					</form>
+
                 </div>
             <%
                     } else if (metodoPago.equals("debito")) {
